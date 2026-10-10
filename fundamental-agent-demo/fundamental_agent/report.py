@@ -1,0 +1,107 @@
+"""基本面简报的 Markdown 渲染。"""
+
+from __future__ import annotations
+
+from .models import FundamentalBrief, MetricPoint, TickerBrief
+
+
+def render_markdown(brief: FundamentalBrief) -> str:
+    lines: list[str] = [
+        "# 美股基本面简报",
+        "",
+        f"- 生成时间：{brief.generated_at}",
+        f"- 数据截止：{brief.data_as_of.isoformat()}",
+        f"- 缓存来源：{brief.cache_source}",
+        "- 数据范围：每只股票最近 4 个季度",
+        "- 增速口径：环比 QoQ，因为本地缓存只有 4 个季度",
+        "",
+        "> 本 Demo 使用本地 illustrative fixture，仅用于验证系统结构和计算口径。",
+        "> 这些数字不是实时行情，也不是经审计的正式财报数据。",
+        "> 报告仅做基本面信息整理，不构成投资建议，不包含买卖建议，不连接交易系统。",
+        "",
+    ]
+
+    for ticker in brief.tickers:
+        lines.extend(_render_ticker(ticker))
+        lines.append("")
+
+    lines.extend(
+        [
+            "## 校验记录",
+            "",
+        ]
+    )
+    lines.extend(f"- {note}" for note in brief.verification_notes)
+    lines.extend(
+        [
+            "",
+            "## 免责声明",
+            "",
+            brief.disclaimer,
+            "",
+            "本报告不包含买入、卖出或持有建议，也没有任何交易执行接口。",
+        ]
+    )
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def _render_ticker(ticker: TickerBrief) -> list[str]:
+    lines = [
+        f"## {ticker.ticker} - {ticker.company_name}",
+        "",
+        "| 财报期间 | 数据日期 | 营收 (USD bn) | 营收环比 | 净利润 (USD bn) | 净利润环比 | 毛利率 | 自由现金流 (USD bn) | 资产负债率 | 数据来源 |",
+        "|---|---|---:|---:|---:|---:|---:|---:|---:|---|",
+    ]
+
+    lookup = _metric_lookup(ticker.metrics)
+    for record in sorted(ticker.quarters, key=lambda item: item.period_end_date):
+        revenue = lookup[(record.period, "revenue")].value
+        revenue_growth = lookup[(record.period, "revenue_growth_qoq")].value
+        net_income = lookup[(record.period, "net_income")].value
+        net_income_growth = lookup[(record.period, "net_income_growth_qoq")].value
+        gross_margin = lookup[(record.period, "gross_margin")].value
+        free_cash_flow = lookup[(record.period, "free_cash_flow")].value
+        debt_ratio = lookup[(record.period, "debt_to_asset_ratio")].value
+
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    record.period,
+                    record.data_date.isoformat(),
+                    _fmt_usd_bn(revenue),
+                    _fmt_pct(revenue_growth),
+                    _fmt_usd_bn(net_income),
+                    _fmt_pct(net_income_growth),
+                    _fmt_pct(gross_margin),
+                    _fmt_usd_bn(free_cash_flow),
+                    _fmt_pct(debt_ratio),
+                    record.source,
+                ]
+            )
+            + " |"
+        )
+
+    lines.extend(
+        [
+            "",
+            "说明：同一行的全部指标均来自该行标注的财报期间、数据日期和数据来源；指标由确定性公式计算得到。",
+        ]
+    )
+    return lines
+
+
+def _metric_lookup(points: list[MetricPoint]) -> dict[tuple[str, str], MetricPoint]:
+    return {(point.period, point.metric): point for point in points}
+
+
+def _fmt_usd_bn(value: float | None) -> str:
+    if value is None:
+        return "N/A"
+    return f"{value / 1_000_000_000:,.2f}"
+
+
+def _fmt_pct(value: float | None) -> str:
+    if value is None:
+        return "N/A"
+    return f"{value:.2f}%"

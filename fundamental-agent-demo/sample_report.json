@@ -1,0 +1,1063 @@
+{
+  "generated_at": "2026-10-10T12:53:38+08:00",
+  "data_as_of": "2026-10-10",
+  "cache_source": "local demo fixture (illustrative, not audited)",
+  "tickers": [
+    {
+      "ticker": "AAPL",
+      "company_name": "Apple Inc. (demo fixture)",
+      "currency": "USD",
+      "quarters": [
+        {
+          "period": "2025-Q4",
+          "period_end_date": "2025-12-31",
+          "data_date": "2026-01-30",
+          "currency": "USD",
+          "revenue": 124300000000.0,
+          "gross_profit": 58100000000.0,
+          "net_income": 36300000000.0,
+          "operating_cash_flow": 40000000000.0,
+          "capital_expenditure": 3000000000.0,
+          "total_assets": 365000000000.0,
+          "total_liabilities": 285000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q1",
+          "period_end_date": "2026-03-31",
+          "data_date": "2026-04-30",
+          "currency": "USD",
+          "revenue": 128500000000.0,
+          "gross_profit": 60000000000.0,
+          "net_income": 37000000000.0,
+          "operating_cash_flow": 41000000000.0,
+          "capital_expenditure": 3200000000.0,
+          "total_assets": 372000000000.0,
+          "total_liabilities": 288000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q2",
+          "period_end_date": "2026-06-30",
+          "data_date": "2026-07-30",
+          "currency": "USD",
+          "revenue": 132000000000.0,
+          "gross_profit": 61800000000.0,
+          "net_income": 38200000000.0,
+          "operating_cash_flow": 42500000000.0,
+          "capital_expenditure": 3100000000.0,
+          "total_assets": 378000000000.0,
+          "total_liabilities": 290000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q3",
+          "period_end_date": "2026-09-30",
+          "data_date": "2026-10-05",
+          "currency": "USD",
+          "revenue": 136400000000.0,
+          "gross_profit": 63500000000.0,
+          "net_income": 39500000000.0,
+          "operating_cash_flow": 44000000000.0,
+          "capital_expenditure": 3300000000.0,
+          "total_assets": 385000000000.0,
+          "total_liabilities": 292000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        }
+      ],
+      "metrics": [
+        {
+          "ticker": "AAPL",
+          "metric": "revenue",
+          "value": 124300000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-01-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "revenue_growth_qoq",
+          "value": null,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-01-30",
+          "note": "First quarter has no prior quarter in the local cache."
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "net_income",
+          "value": 36300000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-01-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "net_income_growth_qoq",
+          "value": null,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-01-30",
+          "note": "First quarter has no prior quarter in the local cache."
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "gross_margin",
+          "value": 46.74,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-01-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "free_cash_flow",
+          "value": 37000000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-01-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "debt_to_asset_ratio",
+          "value": 78.08,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-01-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "revenue",
+          "value": 128500000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-04-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "revenue_growth_qoq",
+          "value": 3.38,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-04-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "net_income",
+          "value": 37000000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-04-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "net_income_growth_qoq",
+          "value": 1.93,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-04-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "gross_margin",
+          "value": 46.69,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-04-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "free_cash_flow",
+          "value": 37800000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-04-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "debt_to_asset_ratio",
+          "value": 77.42,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-04-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "revenue",
+          "value": 132000000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-07-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "revenue_growth_qoq",
+          "value": 2.72,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-07-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "net_income",
+          "value": 38200000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-07-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "net_income_growth_qoq",
+          "value": 3.24,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-07-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "gross_margin",
+          "value": 46.82,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-07-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "free_cash_flow",
+          "value": 39400000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-07-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "debt_to_asset_ratio",
+          "value": 76.72,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-07-30",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "revenue",
+          "value": 136400000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-05",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "revenue_growth_qoq",
+          "value": 3.33,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-05",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "net_income",
+          "value": 39500000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-05",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "net_income_growth_qoq",
+          "value": 3.4,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-05",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "gross_margin",
+          "value": 46.55,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-05",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "free_cash_flow",
+          "value": 40700000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-05",
+          "note": null
+        },
+        {
+          "ticker": "AAPL",
+          "metric": "debt_to_asset_ratio",
+          "value": 75.84,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-05",
+          "note": null
+        }
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "company_name": "Microsoft Corporation (demo fixture)",
+      "currency": "USD",
+      "quarters": [
+        {
+          "period": "2025-Q4",
+          "period_end_date": "2025-12-31",
+          "data_date": "2026-01-29",
+          "currency": "USD",
+          "revenue": 65600000000.0,
+          "gross_profit": 45000000000.0,
+          "net_income": 24700000000.0,
+          "operating_cash_flow": 35000000000.0,
+          "capital_expenditure": 15000000000.0,
+          "total_assets": 512000000000.0,
+          "total_liabilities": 240000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q1",
+          "period_end_date": "2026-03-31",
+          "data_date": "2026-04-29",
+          "currency": "USD",
+          "revenue": 68000000000.0,
+          "gross_profit": 46500000000.0,
+          "net_income": 25500000000.0,
+          "operating_cash_flow": 36200000000.0,
+          "capital_expenditure": 15500000000.0,
+          "total_assets": 520000000000.0,
+          "total_liabilities": 243000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q2",
+          "period_end_date": "2026-06-30",
+          "data_date": "2026-07-29",
+          "currency": "USD",
+          "revenue": 70200000000.0,
+          "gross_profit": 48000000000.0,
+          "net_income": 26400000000.0,
+          "operating_cash_flow": 37500000000.0,
+          "capital_expenditure": 16000000000.0,
+          "total_assets": 528000000000.0,
+          "total_liabilities": 246000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q3",
+          "period_end_date": "2026-09-30",
+          "data_date": "2026-10-06",
+          "currency": "USD",
+          "revenue": 72500000000.0,
+          "gross_profit": 49500000000.0,
+          "net_income": 27300000000.0,
+          "operating_cash_flow": 38800000000.0,
+          "capital_expenditure": 16500000000.0,
+          "total_assets": 536000000000.0,
+          "total_liabilities": 249000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        }
+      ],
+      "metrics": [
+        {
+          "ticker": "MSFT",
+          "metric": "revenue",
+          "value": 65600000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-01-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "revenue_growth_qoq",
+          "value": null,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-01-29",
+          "note": "First quarter has no prior quarter in the local cache."
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "net_income",
+          "value": 24700000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-01-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "net_income_growth_qoq",
+          "value": null,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-01-29",
+          "note": "First quarter has no prior quarter in the local cache."
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "gross_margin",
+          "value": 68.6,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-01-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "free_cash_flow",
+          "value": 20000000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-01-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "debt_to_asset_ratio",
+          "value": 46.88,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-01-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "revenue",
+          "value": 68000000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-04-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "revenue_growth_qoq",
+          "value": 3.66,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-04-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "net_income",
+          "value": 25500000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-04-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "net_income_growth_qoq",
+          "value": 3.24,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-04-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "gross_margin",
+          "value": 68.38,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-04-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "free_cash_flow",
+          "value": 20700000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-04-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "debt_to_asset_ratio",
+          "value": 46.73,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-04-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "revenue",
+          "value": 70200000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-07-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "revenue_growth_qoq",
+          "value": 3.24,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-07-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "net_income",
+          "value": 26400000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-07-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "net_income_growth_qoq",
+          "value": 3.53,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-07-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "gross_margin",
+          "value": 68.38,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-07-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "free_cash_flow",
+          "value": 21500000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-07-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "debt_to_asset_ratio",
+          "value": 46.59,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-07-29",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "revenue",
+          "value": 72500000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-06",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "revenue_growth_qoq",
+          "value": 3.28,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-06",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "net_income",
+          "value": 27300000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-06",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "net_income_growth_qoq",
+          "value": 3.41,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-06",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "gross_margin",
+          "value": 68.28,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-06",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "free_cash_flow",
+          "value": 22300000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-06",
+          "note": null
+        },
+        {
+          "ticker": "MSFT",
+          "metric": "debt_to_asset_ratio",
+          "value": 46.46,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-06",
+          "note": null
+        }
+      ]
+    },
+    {
+      "ticker": "NVDA",
+      "company_name": "NVIDIA Corporation (demo fixture)",
+      "currency": "USD",
+      "quarters": [
+        {
+          "period": "2025-Q4",
+          "period_end_date": "2025-12-31",
+          "data_date": "2026-02-25",
+          "currency": "USD",
+          "revenue": 44000000000.0,
+          "gross_profit": 33000000000.0,
+          "net_income": 22000000000.0,
+          "operating_cash_flow": 25000000000.0,
+          "capital_expenditure": 1200000000.0,
+          "total_assets": 120000000000.0,
+          "total_liabilities": 38000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q1",
+          "period_end_date": "2026-03-31",
+          "data_date": "2026-05-27",
+          "currency": "USD",
+          "revenue": 46500000000.0,
+          "gross_profit": 34800000000.0,
+          "net_income": 23400000000.0,
+          "operating_cash_flow": 26500000000.0,
+          "capital_expenditure": 1300000000.0,
+          "total_assets": 128000000000.0,
+          "total_liabilities": 40000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q2",
+          "period_end_date": "2026-06-30",
+          "data_date": "2026-08-26",
+          "currency": "USD",
+          "revenue": 49000000000.0,
+          "gross_profit": 36700000000.0,
+          "net_income": 24800000000.0,
+          "operating_cash_flow": 28000000000.0,
+          "capital_expenditure": 1400000000.0,
+          "total_assets": 136000000000.0,
+          "total_liabilities": 42000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q3",
+          "period_end_date": "2026-09-30",
+          "data_date": "2026-10-07",
+          "currency": "USD",
+          "revenue": 52000000000.0,
+          "gross_profit": 39000000000.0,
+          "net_income": 26500000000.0,
+          "operating_cash_flow": 29500000000.0,
+          "capital_expenditure": 1500000000.0,
+          "total_assets": 145000000000.0,
+          "total_liabilities": 44000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        }
+      ],
+      "metrics": [
+        {
+          "ticker": "NVDA",
+          "metric": "revenue",
+          "value": 44000000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-02-25",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "revenue_growth_qoq",
+          "value": null,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-02-25",
+          "note": "First quarter has no prior quarter in the local cache."
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "net_income",
+          "value": 22000000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-02-25",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "net_income_growth_qoq",
+          "value": null,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-02-25",
+          "note": "First quarter has no prior quarter in the local cache."
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "gross_margin",
+          "value": 75.0,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-02-25",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "free_cash_flow",
+          "value": 23800000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-02-25",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "debt_to_asset_ratio",
+          "value": 31.67,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2025-Q4",
+          "data_date": "2026-02-25",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "revenue",
+          "value": 46500000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-05-27",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "revenue_growth_qoq",
+          "value": 5.68,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-05-27",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "net_income",
+          "value": 23400000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-05-27",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "net_income_growth_qoq",
+          "value": 6.36,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-05-27",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "gross_margin",
+          "value": 74.84,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-05-27",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "free_cash_flow",
+          "value": 25200000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-05-27",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "debt_to_asset_ratio",
+          "value": 31.25,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q1",
+          "data_date": "2026-05-27",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "revenue",
+          "value": 49000000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-08-26",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "revenue_growth_qoq",
+          "value": 5.38,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-08-26",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "net_income",
+          "value": 24800000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-08-26",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "net_income_growth_qoq",
+          "value": 5.98,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-08-26",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "gross_margin",
+          "value": 74.9,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-08-26",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "free_cash_flow",
+          "value": 26600000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-08-26",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "debt_to_asset_ratio",
+          "value": 30.88,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q2",
+          "data_date": "2026-08-26",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "revenue",
+          "value": 52000000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-07",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "revenue_growth_qoq",
+          "value": 6.12,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-07",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "net_income",
+          "value": 26500000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-07",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "net_income_growth_qoq",
+          "value": 6.85,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-07",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "gross_margin",
+          "value": 75.0,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-07",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "free_cash_flow",
+          "value": 28000000000.0,
+          "unit": "USD",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-07",
+          "note": null
+        },
+        {
+          "ticker": "NVDA",
+          "metric": "debt_to_asset_ratio",
+          "value": 30.34,
+          "unit": "percent",
+          "source": "demo_fixture_v1: illustrative quarterly data",
+          "period": "2026-Q3",
+          "data_date": "2026-10-07",
+          "note": null
+        }
+      ]
+    }
+  ],
+  "verification_notes": [
+    "Supervisor locked the MVP metric checklist.",
+    "AAPL 2025-Q4: record and source validated",
+    "AAPL 2026-Q1: record and source validated",
+    "AAPL 2026-Q2: record and source validated",
+    "AAPL 2026-Q3: record and source validated",
+    "AAPL: 4 periods, 28 metric points verified",
+    "MSFT 2025-Q4: record and source validated",
+    "MSFT 2026-Q1: record and source validated",
+    "MSFT 2026-Q2: record and source validated",
+    "MSFT 2026-Q3: record and source validated",
+    "MSFT: 4 periods, 28 metric points verified",
+    "NVDA 2025-Q4: record and source validated",
+    "NVDA 2026-Q1: record and source validated",
+    "NVDA 2026-Q2: record and source validated",
+    "NVDA 2026-Q3: record and source validated",
+    "NVDA: 4 periods, 28 metric points verified",
+    "All required metrics passed deterministic recomputation checks.",
+    "No trading-advice phrases detected in the report body."
+  ],
+  "disclaimer": "本报告仅用于基本面信息整理和系统演示，不构成任何投资建议。报告不包含买入、卖出或持有建议，不连接交易系统，也不执行任何交易。"
+}
