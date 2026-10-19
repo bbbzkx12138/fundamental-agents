@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import unittest
+from datetime import date
 from pathlib import Path
 
 from fundamental_agent.pipeline import build_graph
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-CACHE_PATH = PROJECT_ROOT / "data" / "cache" / "quarterly_fundamentals.json"
+CACHE_PATH = PROJECT_ROOT / "data" / "cache" / "quarterly_fundamentals.sec.json"
 
 
 class PipelineTest(unittest.TestCase):
@@ -22,6 +23,12 @@ class PipelineTest(unittest.TestCase):
         )
         self.assertEqual(len(state["brief"].tickers[0].quarters), 4)
         self.assertEqual(len(state["brief"].tickers[0].metrics), 28)
+        self.assertEqual(state["brief"].data_as_of, date(2026, 10, 12))
+        for ticker in state["brief"].tickers:
+            for quarter in ticker.quarters:
+                self.assertIsNotNone(quarter.filed_date)
+                self.assertTrue(quarter.accession_number)
+                self.assertTrue(quarter.source_url)
 
         markdown = state["markdown"]
         self.assertIn("营收 (USD bn)", markdown)

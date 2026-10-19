@@ -9,7 +9,7 @@ from typing import Any
 from .data_loader import load_cache, select_tickers
 from .graph import DagGraph, Node
 from .metrics import build_metric_points
-from .models import FundamentalBrief, TickerBrief
+from .models import CacheFile, CompanyRecords, FundamentalBrief, TickerBrief
 from .report import render_markdown
 from .verify import (
     REQUIRED_METRICS,
@@ -30,9 +30,19 @@ def build_brief(
 ) -> FundamentalBrief:
     cache = load_cache(cache_path)
     selected = select_tickers(cache, tickers)
+    brief, _ = assemble_brief(cache, selected)
+    return brief
+
+
+def assemble_brief(
+    cache: CacheFile,
+    selected: dict[str, CompanyRecords],
+    verification_notes: list[str] | None = None,
+) -> tuple[FundamentalBrief, list[str]]:
+    """把缓存记录组装成报告数据，并返回校验记录。"""
 
     ticker_briefs: list[TickerBrief] = []
-    verification_notes: list[str] = []
+    notes = list(verification_notes or [])
 
     for ticker, company in selected.items():
         metrics = build_metric_points(ticker, company.quarters)
@@ -43,17 +53,18 @@ def build_brief(
             quarters=company.quarters,
             metrics=metrics,
         )
-        verification_notes.extend(verify_ticker_brief(ticker_brief))
+        notes.extend(verify_ticker_brief(ticker_brief))
         ticker_briefs.append(ticker_brief)
 
-    return FundamentalBrief(
+    brief = FundamentalBrief(
         generated_at=datetime.now().astimezone().isoformat(timespec="seconds"),
         data_as_of=cache.as_of,
         cache_source=cache.source,
         tickers=ticker_briefs,
-        verification_notes=verification_notes,
+        verification_notes=notes,
         disclaimer=DISCLAIMER,
     )
+    return brief, notes
 
 
 def build_graph(cache_path: Path, tickers: list[str]) -> DagGraph:
@@ -65,7 +76,7 @@ def build_graph(cache_path: Path, tickers: list[str]) -> DagGraph:
 
     graph = DagGraph()
 
-    #加载本地缓存数据并初始化工作流状态
+    # 加载本地缓存数据并初始化工作流状态
     def load_cache_node(state: dict[str, Any]) -> dict[str, Any]:
         return {
             "cache": load_cache(cache_path),
@@ -90,7 +101,7 @@ def build_graph(cache_path: Path, tickers: list[str]) -> DagGraph:
         }
 
     def compute_metrics_node(state: dict[str, Any]) -> dict[str, Any]:
-        briefs: list[TickerBrief] = []    #准备一个列表，用来保存每只股票的分析结果
+        briefs: list[TickerBrief] = []  # 准备一个列表，用来保存每只股票的分析结果
         notes = list(state["verification_notes"])
         for ticker, company in state["selected"].items():
             ticker_brief = TickerBrief(
@@ -143,7 +154,7 @@ def build_graph(cache_path: Path, tickers: list[str]) -> DagGraph:
             "brief": brief,
             "markdown": markdown,
             "json": brief.model_dump_json(indent=2),
-        
+        }
     graph.add_node(Node("load_cache", load_cache_node))
     graph.add_node(Node("validate_cache", validate_cache_node, ("load_cache",)))
     graph.add_node(Node("supervisor", supervisor_node, ("validate_cache",)))

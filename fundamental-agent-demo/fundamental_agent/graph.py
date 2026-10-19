@@ -37,6 +37,7 @@ class DagGraph:
 
     def run(self, state: dict[str, Any] | None = None) -> dict[str, Any]:
         state = dict(state or {})
+        # _topological_order() 会返回一个满足依赖关系的节点名列表
         for name in self._topological_order():
             result = self._nodes[name].run(state)
             if result:

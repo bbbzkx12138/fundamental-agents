@@ -22,6 +22,11 @@ class QuarterRecord(BaseModel):
     total_assets: float
     total_liabilities: float
     source: str
+    source_url: str | None = None
+    accession_number: str | None = None
+    form_type: str | None = None
+    filed_date: date | None = None
+    frame: str | None = None
 
     @field_validator("period", "currency", "source")
     @classmethod

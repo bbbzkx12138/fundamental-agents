@@ -1,9 +1,13 @@
 [project]
 name = "fundamental-agent-demo"
 version = "0.1.0"
-description = "Local-cache fundamental brief demo for three US tickers."
+description = "Local-cache fundamental brief demo for three US tickers with LangGraph human approval."
 requires-python = ">=3.10"
-dependencies = ["pydantic>=2"]
+dependencies = [
+    "pydantic>=2",
+    "langgraph==1.2.16",
+    "langgraph-checkpoint-sqlite==3.1.2",
+]
 
 [tool.setuptools]
 packages = ["fundamental_agent"]

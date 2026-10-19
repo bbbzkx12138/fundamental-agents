@@ -1,68 +1,96 @@
 # 美股基本面简报
 
-- 生成时间：2026-10-10T12:53:38+08:00
-- 数据截止：2026-10-10
-- 缓存来源：local demo fixture (illustrative, not audited)
+- 生成时间：2026-10-18T17:29:32+08:00
+- 数据截止：2026-10-12
+- 缓存来源：SEC EDGAR companyfacts via data.sec.gov; point-in-time cutoff 2026-10-12
 - 数据范围：每只股票最近 4 个季度
 - 增速口径：环比 QoQ，因为本地缓存只有 4 个季度
 
-> 本 Demo 使用本地 illustrative fixture，仅用于验证系统结构和计算口径。
-> 这些数字不是实时行情，也不是经审计的正式财报数据。
+> 数据来源：SEC EDGAR companyfacts。
+> 单季数据优先使用原始 filing；缺失的单季值由 SEC 累计值差分推导。
 > 报告仅做基本面信息整理，不构成投资建议，不包含买卖建议，不连接交易系统。
 
-## AAPL - Apple Inc. (demo fixture)
+## AAPL - Apple Inc.
 
 | 财报期间 | 数据日期 | 营收 (USD bn) | 营收环比 | 净利润 (USD bn) | 净利润环比 | 毛利率 | 自由现金流 (USD bn) | 资产负债率 | 数据来源 |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|
-| 2025-Q4 | 2026-01-30 | 124.30 | N/A | 36.30 | N/A | 46.74% | 37.00 | 78.08% | demo_fixture_v1: illustrative quarterly data |
-| 2026-Q1 | 2026-04-30 | 128.50 | 3.38% | 37.00 | 1.93% | 46.69% | 37.80 | 77.42% | demo_fixture_v1: illustrative quarterly data |
-| 2026-Q2 | 2026-07-30 | 132.00 | 2.72% | 38.20 | 3.24% | 46.82% | 39.40 | 76.72% | demo_fixture_v1: illustrative quarterly data |
-| 2026-Q3 | 2026-10-05 | 136.40 | 3.33% | 39.50 | 3.40% | 46.55% | 40.70 | 75.84% | demo_fixture_v1: illustrative quarterly data |
+| FY2025-Q4 | 2025-10-31 | 102.47 | N/A | 27.47 | N/A | 47.18% | 26.49 | 79.48% | SEC EDGAR companyfacts; revenue: RevenueFromContractWithCustomerExcludingAssessedTax 10-K filed 2025-10-31 accn 0000320193-25-000079 (derived Q4); gross_profit: GrossProfit 10-K filed 2025-10-31 accn 0000320193-25-000079 (derived Q4); net_income: NetIncomeLoss 10-K filed 2025-10-31 accn 0000320193-25-000079 (derived Q4); operating_cash_flow: NetCashProvidedByUsedInOperatingActivities 10-K filed 2025-10-31 accn 0000320193-25-000079 (derived Q4); capital_expenditure: PaymentsToAcquirePropertyPlantAndEquipment 10-K filed 2025-10-31 accn 0000320193-25-000079 (derived Q4); total_assets: Assets 10-K filed 2025-10-31 accn 0000320193-25-000079 (reported); total_liabilities: Liabilities 10-K filed 2025-10-31 accn 0000320193-25-000079 (reported) |
+| FY2026-Q1 | 2026-01-30 | 143.76 | 40.30% | 42.10 | 53.27% | 48.16% | 51.55 | 76.75% | SEC EDGAR companyfacts; revenue: RevenueFromContractWithCustomerExcludingAssessedTax 10-Q filed 2026-01-30 accn 0000320193-26-000006 (reported); gross_profit: GrossProfit 10-Q filed 2026-01-30 accn 0000320193-26-000006 (reported); net_income: NetIncomeLoss 10-Q filed 2026-01-30 accn 0000320193-26-000006 (reported); operating_cash_flow: NetCashProvidedByUsedInOperatingActivities 10-Q filed 2026-01-30 accn 0000320193-26-000006 (reported); capital_expenditure: PaymentsToAcquirePropertyPlantAndEquipment 10-Q filed 2026-01-30 accn 0000320193-26-000006 (reported); total_assets: Assets 10-Q filed 2026-01-30 accn 0000320193-26-000006 (reported); total_liabilities: Liabilities 10-Q filed 2026-01-30 accn 0000320193-26-000006 (reported) |
+| FY2026-Q2 | 2026-05-01 | 111.18 | -22.66% | 29.58 | -29.74% | 49.27% | 26.73 | 71.30% | SEC EDGAR companyfacts; revenue: RevenueFromContractWithCustomerExcludingAssessedTax 10-Q filed 2026-05-01 accn 0000320193-26-000013 (reported); gross_profit: GrossProfit 10-Q filed 2026-05-01 accn 0000320193-26-000013 (reported); net_income: NetIncomeLoss 10-Q filed 2026-05-01 accn 0000320193-26-000013 (reported); operating_cash_flow: NetCashProvidedByUsedInOperatingActivities 10-Q filed 2026-05-01 accn 0000320193-26-000013 (derived Q2); capital_expenditure: PaymentsToAcquirePropertyPlantAndEquipment 10-Q filed 2026-05-01 accn 0000320193-26-000013 (derived Q2); total_assets: Assets 10-Q filed 2026-05-01 accn 0000320193-26-000013 (reported); total_liabilities: Liabilities 10-Q filed 2026-05-01 accn 0000320193-26-000013 (reported) |
+| FY2026-Q3 | 2026-07-31 | 109.42 | -1.59% | 29.79 | 0.71% | 50.06% | 31.91 | 71.95% | SEC EDGAR companyfacts; revenue: RevenueFromContractWithCustomerExcludingAssessedTax 10-Q filed 2026-07-31 accn 0000320193-26-000020 (reported); gross_profit: GrossProfit 10-Q filed 2026-07-31 accn 0000320193-26-000020 (reported); net_income: NetIncomeLoss 10-Q filed 2026-07-31 accn 0000320193-26-000020 (reported); operating_cash_flow: NetCashProvidedByUsedInOperatingActivities 10-Q filed 2026-07-31 accn 0000320193-26-000020 (derived Q3); capital_expenditure: PaymentsToAcquirePropertyPlantAndEquipment 10-Q filed 2026-07-31 accn 0000320193-26-000020 (derived Q3); total_assets: Assets 10-Q filed 2026-07-31 accn 0000320193-26-000020 (reported); total_liabilities: Liabilities 10-Q filed 2026-07-31 accn 0000320193-26-000020 (reported) |
 
 说明：同一行的全部指标均来自该行标注的财报期间、数据日期和数据来源；指标由确定性公式计算得到。
 
-## MSFT - Microsoft Corporation (demo fixture)
+### 来源追溯
+
+| 财报期间 | 数据日期 | 申报日期 | 表单 | Accession | Frame | Source URL |
+|---|---|---|---|---|---|---|
+| FY2025-Q4 | 2025-10-31 | 2025-10-31 | 10-K | 0000320193-25-000079 | N/A | [SEC companyfacts](https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json) |
+| FY2026-Q1 | 2026-01-30 | 2026-01-30 | 10-Q | 0000320193-26-000006 | CY2025Q4 | [SEC companyfacts](https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json) |
+| FY2026-Q2 | 2026-05-01 | 2026-05-01 | 10-Q | 0000320193-26-000013 | CY2026Q1 | [SEC companyfacts](https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json) |
+| FY2026-Q3 | 2026-07-31 | 2026-07-31 | 10-Q | 0000320193-26-000020 | CY2026Q2 | [SEC companyfacts](https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json) |
+
+## MSFT - MICROSOFT CORPORATION
 
 | 财报期间 | 数据日期 | 营收 (USD bn) | 营收环比 | 净利润 (USD bn) | 净利润环比 | 毛利率 | 自由现金流 (USD bn) | 资产负债率 | 数据来源 |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|
-| 2025-Q4 | 2026-01-29 | 65.60 | N/A | 24.70 | N/A | 68.60% | 20.00 | 46.88% | demo_fixture_v1: illustrative quarterly data |
-| 2026-Q1 | 2026-04-29 | 68.00 | 3.66% | 25.50 | 3.24% | 68.38% | 20.70 | 46.73% | demo_fixture_v1: illustrative quarterly data |
-| 2026-Q2 | 2026-07-29 | 70.20 | 3.24% | 26.40 | 3.53% | 68.38% | 21.50 | 46.59% | demo_fixture_v1: illustrative quarterly data |
-| 2026-Q3 | 2026-10-06 | 72.50 | 3.28% | 27.30 | 3.41% | 68.28% | 22.30 | 46.46% | demo_fixture_v1: illustrative quarterly data |
+| FY2026-Q1 | 2025-10-29 | 77.67 | N/A | 27.75 | N/A | 69.05% | 25.66 | 42.94% | SEC EDGAR companyfacts; revenue: RevenueFromContractWithCustomerExcludingAssessedTax 10-Q filed 2025-10-29 accn 0001193125-25-256321 (reported); gross_profit: GrossProfit 10-Q filed 2025-10-29 accn 0001193125-25-256321 (reported); net_income: NetIncomeLoss 10-Q filed 2025-10-29 accn 0001193125-25-256321 (reported); operating_cash_flow: NetCashProvidedByUsedInOperatingActivities 10-Q filed 2025-10-29 accn 0001193125-25-256321 (reported); capital_expenditure: PaymentsToAcquirePropertyPlantAndEquipment 10-Q filed 2025-10-29 accn 0001193125-25-256321 (reported); total_assets: Assets 10-Q filed 2025-10-29 accn 0001193125-25-256321 (reported); total_liabilities: Liabilities 10-Q filed 2025-10-29 accn 0001193125-25-256321 (reported) |
+| FY2026-Q2 | 2026-01-28 | 81.27 | 4.63% | 38.46 | 38.60% | 68.04% | 5.88 | 41.25% | SEC EDGAR companyfacts; revenue: RevenueFromContractWithCustomerExcludingAssessedTax 10-Q filed 2026-01-28 accn 0001193125-26-027207 (reported); gross_profit: GrossProfit 10-Q filed 2026-01-28 accn 0001193125-26-027207 (reported); net_income: NetIncomeLoss 10-Q filed 2026-01-28 accn 0001193125-26-027207 (reported); operating_cash_flow: NetCashProvidedByUsedInOperatingActivities 10-Q filed 2026-01-28 accn 0001193125-26-027207 (reported); capital_expenditure: PaymentsToAcquirePropertyPlantAndEquipment 10-Q filed 2026-01-28 accn 0001193125-26-027207 (reported); total_assets: Assets 10-Q filed 2026-01-28 accn 0001193125-26-027207 (reported); total_liabilities: Liabilities 10-Q filed 2026-01-28 accn 0001193125-26-027207 (reported) |
+| FY2026-Q3 | 2026-04-29 | 82.89 | 1.98% | 31.78 | -17.37% | 67.63% | 15.80 | 40.31% | SEC EDGAR companyfacts; revenue: RevenueFromContractWithCustomerExcludingAssessedTax 10-Q filed 2026-04-29 accn 0001193125-26-191507 (reported); gross_profit: GrossProfit 10-Q filed 2026-04-29 accn 0001193125-26-191507 (reported); net_income: NetIncomeLoss 10-Q filed 2026-04-29 accn 0001193125-26-191507 (reported); operating_cash_flow: NetCashProvidedByUsedInOperatingActivities 10-Q filed 2026-04-29 accn 0001193125-26-191507 (reported); capital_expenditure: PaymentsToAcquirePropertyPlantAndEquipment 10-Q filed 2026-04-29 accn 0001193125-26-191507 (reported); total_assets: Assets 10-Q filed 2026-04-29 accn 0001193125-26-191507 (reported); total_liabilities: Liabilities 10-Q filed 2026-04-29 accn 0001193125-26-191507 (reported) |
+| FY2026-Q4 | 2026-07-29 | 90.01 | 8.59% | 35.77 | 12.55% | 67.20% | 19.64 | 41.67% | SEC EDGAR companyfacts; revenue: RevenueFromContractWithCustomerExcludingAssessedTax 10-K filed 2026-07-29 accn 0001193125-26-323660 (derived Q4); gross_profit: GrossProfit 10-K filed 2026-07-29 accn 0001193125-26-323660 (derived Q4); net_income: NetIncomeLoss 10-K filed 2026-07-29 accn 0001193125-26-323660 (derived Q4); operating_cash_flow: NetCashProvidedByUsedInOperatingActivities 10-K filed 2026-07-29 accn 0001193125-26-323660 (derived Q4); capital_expenditure: PaymentsToAcquirePropertyPlantAndEquipment 10-K filed 2026-07-29 accn 0001193125-26-323660 (derived Q4); total_assets: Assets 10-K filed 2026-07-29 accn 0001193125-26-323660 (reported); total_liabilities: Liabilities 10-K filed 2026-07-29 accn 0001193125-26-323660 (reported) |
 
 说明：同一行的全部指标均来自该行标注的财报期间、数据日期和数据来源；指标由确定性公式计算得到。
 
-## NVDA - NVIDIA Corporation (demo fixture)
+### 来源追溯
+
+| 财报期间 | 数据日期 | 申报日期 | 表单 | Accession | Frame | Source URL |
+|---|---|---|---|---|---|---|
+| FY2026-Q1 | 2025-10-29 | 2025-10-29 | 10-Q | 0001193125-25-256321 | CY2025Q3 | [SEC companyfacts](https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json) |
+| FY2026-Q2 | 2026-01-28 | 2026-01-28 | 10-Q | 0001193125-26-027207 | CY2025Q4 | [SEC companyfacts](https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json) |
+| FY2026-Q3 | 2026-04-29 | 2026-04-29 | 10-Q | 0001193125-26-191507 | CY2026Q1 | [SEC companyfacts](https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json) |
+| FY2026-Q4 | 2026-07-29 | 2026-07-29 | 10-K | 0001193125-26-323660 | N/A | [SEC companyfacts](https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json) |
+
+## NVDA - NVIDIA CORP
 
 | 财报期间 | 数据日期 | 营收 (USD bn) | 营收环比 | 净利润 (USD bn) | 净利润环比 | 毛利率 | 自由现金流 (USD bn) | 资产负债率 | 数据来源 |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|
-| 2025-Q4 | 2026-02-25 | 44.00 | N/A | 22.00 | N/A | 75.00% | 23.80 | 31.67% | demo_fixture_v1: illustrative quarterly data |
-| 2026-Q1 | 2026-05-27 | 46.50 | 5.68% | 23.40 | 6.36% | 74.84% | 25.20 | 31.25% | demo_fixture_v1: illustrative quarterly data |
-| 2026-Q2 | 2026-08-26 | 49.00 | 5.38% | 24.80 | 5.98% | 74.90% | 26.60 | 30.88% | demo_fixture_v1: illustrative quarterly data |
-| 2026-Q3 | 2026-10-07 | 52.00 | 6.12% | 26.50 | 6.85% | 75.00% | 28.00 | 30.34% | demo_fixture_v1: illustrative quarterly data |
+| FY2026-Q3 | 2025-11-19 | 57.01 | N/A | 31.91 | N/A | 73.41% | 22.11 | 26.22% | SEC EDGAR companyfacts; revenue: Revenues 10-Q filed 2025-11-19 accn 0001045810-25-000230 (reported); gross_profit: GrossProfit 10-Q filed 2025-11-19 accn 0001045810-25-000230 (reported); net_income: NetIncomeLoss 10-Q filed 2025-11-19 accn 0001045810-25-000230 (reported); operating_cash_flow: NetCashProvidedByUsedInOperatingActivities 10-Q filed 2025-11-19 accn 0001045810-25-000230 (derived Q3); capital_expenditure: PaymentsToAcquireProductiveAssets 10-Q filed 2025-11-19 accn 0001045810-25-000230 (derived Q3); total_assets: Assets 10-Q filed 2025-11-19 accn 0001045810-25-000230 (reported); total_liabilities: Liabilities 10-Q filed 2025-11-19 accn 0001045810-25-000230 (reported) |
+| FY2026-Q4 | 2026-02-25 | 68.13 | 19.51% | 42.96 | 34.63% | 75.00% | 34.90 | 23.94% | SEC EDGAR companyfacts; revenue: Revenues 10-K filed 2026-02-25 accn 0001045810-26-000021 (derived Q4); gross_profit: GrossProfit 10-K filed 2026-02-25 accn 0001045810-26-000021 (derived Q4); net_income: NetIncomeLoss 10-K filed 2026-02-25 accn 0001045810-26-000021 (derived Q4); operating_cash_flow: NetCashProvidedByUsedInOperatingActivities 10-K filed 2026-02-25 accn 0001045810-26-000021 (derived Q4); capital_expenditure: PaymentsToAcquireProductiveAssets 10-K filed 2026-02-25 accn 0001045810-26-000021 (derived Q4); total_assets: Assets 10-K filed 2026-02-25 accn 0001045810-26-000021 (reported); total_liabilities: Liabilities 10-K filed 2026-02-25 accn 0001045810-26-000021 (reported) |
+| FY2027-Q1 | 2026-05-20 | 81.61 | 19.80% | 58.32 | 35.76% | 74.93% | 48.59 | 24.67% | SEC EDGAR companyfacts; revenue: Revenues 10-Q filed 2026-05-20 accn 0001045810-26-000052 (reported); gross_profit: GrossProfit 10-Q filed 2026-05-20 accn 0001045810-26-000052 (reported); net_income: NetIncomeLoss 10-Q filed 2026-05-20 accn 0001045810-26-000052 (reported); operating_cash_flow: NetCashProvidedByUsedInOperatingActivities 10-Q filed 2026-05-20 accn 0001045810-26-000052 (reported); capital_expenditure: PaymentsToAcquireProductiveAssets 10-Q filed 2026-05-20 accn 0001045810-26-000052 (reported); total_assets: Assets 10-Q filed 2026-05-20 accn 0001045810-26-000052 (reported); total_liabilities: Liabilities 10-Q filed 2026-05-20 accn 0001045810-26-000052 (reported) |
+| FY2027-Q2 | 2026-08-26 | 96.22 | 17.90% | 59.69 | 2.34% | 74.98% | 21.40 | 28.50% | SEC EDGAR companyfacts; revenue: Revenues 10-Q filed 2026-08-26 accn 0001045810-26-000075 (reported); gross_profit: GrossProfit 10-Q filed 2026-08-26 accn 0001045810-26-000075 (reported); net_income: NetIncomeLoss 10-Q filed 2026-08-26 accn 0001045810-26-000075 (reported); operating_cash_flow: NetCashProvidedByUsedInOperatingActivities 10-Q filed 2026-08-26 accn 0001045810-26-000075 (derived Q2); capital_expenditure: PaymentsToAcquireProductiveAssets 10-Q filed 2026-08-26 accn 0001045810-26-000075 (derived Q2); total_assets: Assets 10-Q filed 2026-08-26 accn 0001045810-26-000075 (reported); total_liabilities: Liabilities 10-Q filed 2026-08-26 accn 0001045810-26-000075 (reported) |
 
 说明：同一行的全部指标均来自该行标注的财报期间、数据日期和数据来源；指标由确定性公式计算得到。
+
+### 来源追溯
+
+| 财报期间 | 数据日期 | 申报日期 | 表单 | Accession | Frame | Source URL |
+|---|---|---|---|---|---|---|
+| FY2026-Q3 | 2025-11-19 | 2025-11-19 | 10-Q | 0001045810-25-000230 | CY2025Q3 | [SEC companyfacts](https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json) |
+| FY2026-Q4 | 2026-02-25 | 2026-02-25 | 10-K | 0001045810-26-000021 | N/A | [SEC companyfacts](https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json) |
+| FY2027-Q1 | 2026-05-20 | 2026-05-20 | 10-Q | 0001045810-26-000052 | CY2026Q1 | [SEC companyfacts](https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json) |
+| FY2027-Q2 | 2026-08-26 | 2026-08-26 | 10-Q | 0001045810-26-000075 | CY2026Q2 | [SEC companyfacts](https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json) |
 
 ## 校验记录
 
-- Supervisor locked the MVP metric checklist.
-- AAPL 2025-Q4: record and source validated
-- AAPL 2026-Q1: record and source validated
-- AAPL 2026-Q2: record and source validated
-- AAPL 2026-Q3: record and source validated
+- Supervisor 已锁定 MVP 指标检查清单。
+- AAPL FY2025-Q4: record and source validated
+- AAPL FY2026-Q1: record and source validated
+- AAPL FY2026-Q2: record and source validated
+- AAPL FY2026-Q3: record and source validated
 - AAPL: 4 periods, 28 metric points verified
-- MSFT 2025-Q4: record and source validated
-- MSFT 2026-Q1: record and source validated
-- MSFT 2026-Q2: record and source validated
-- MSFT 2026-Q3: record and source validated
+- MSFT FY2026-Q1: record and source validated
+- MSFT FY2026-Q2: record and source validated
+- MSFT FY2026-Q3: record and source validated
+- MSFT FY2026-Q4: record and source validated
 - MSFT: 4 periods, 28 metric points verified
-- NVDA 2025-Q4: record and source validated
-- NVDA 2026-Q1: record and source validated
-- NVDA 2026-Q2: record and source validated
-- NVDA 2026-Q3: record and source validated
+- NVDA FY2026-Q3: record and source validated
+- NVDA FY2026-Q4: record and source validated
+- NVDA FY2027-Q1: record and source validated
+- NVDA FY2027-Q2: record and source validated
 - NVDA: 4 periods, 28 metric points verified
-- All required metrics passed deterministic recomputation checks.
-- No trading-advice phrases detected in the report body.
+- 所有必需指标均通过确定性重算校验。
+- 人工审批已通过。
+- 报告正文未检测到交易建议表述。
 
 ## 免责声明
 

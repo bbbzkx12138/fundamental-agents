@@ -15,8 +15,7 @@ def render_markdown(brief: FundamentalBrief) -> str:
         "- 数据范围：每只股票最近 4 个季度",
         "- 增速口径：环比 QoQ，因为本地缓存只有 4 个季度",
         "",
-        "> 本 Demo 使用本地 illustrative fixture，仅用于验证系统结构和计算口径。",
-        "> 这些数字不是实时行情，也不是经审计的正式财报数据。",
+        *_source_note(brief.cache_source),
         "> 报告仅做基本面信息整理，不构成投资建议，不包含买卖建议，不连接交易系统。",
         "",
     ]
@@ -86,8 +85,34 @@ def _render_ticker(ticker: TickerBrief) -> list[str]:
         [
             "",
             "说明：同一行的全部指标均来自该行标注的财报期间、数据日期和数据来源；指标由确定性公式计算得到。",
+            "",
+            "### 来源追溯",
+            "",
+            "| 财报期间 | 数据日期 | 申报日期 | 表单 | Accession | Frame | Source URL |",
+            "|---|---|---|---|---|---|---|",
         ]
     )
+    for record in sorted(ticker.quarters, key=lambda item: item.period_end_date):
+        source_url = (
+            f"[SEC companyfacts]({record.source_url})"
+            if record.source_url
+            else "N/A"
+        )
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    record.period,
+                    record.data_date.isoformat(),
+                    record.filed_date.isoformat() if record.filed_date else "N/A",
+                    record.form_type or "N/A",
+                    record.accession_number or "N/A",
+                    record.frame or "N/A",
+                    source_url,
+                ]
+            )
+            + " |"
+        )
     return lines
 
 
@@ -105,3 +130,15 @@ def _fmt_pct(value: float | None) -> str:
     if value is None:
         return "N/A"
     return f"{value:.2f}%"
+
+
+def _source_note(cache_source: str) -> list[str]:
+    if "SEC EDGAR" in cache_source:
+        return [
+            "> 数据来源：SEC EDGAR companyfacts。",
+            "> 单季数据优先使用原始 filing；缺失的单季值由 SEC 累计值差分推导。",
+        ]
+    return [
+        "> 本 Demo 使用本地 illustrative fixture，仅用于验证系统结构和计算口径。",
+        "> 这些数字不是实时行情，也不是经审计的正式财报数据。",
+    ]

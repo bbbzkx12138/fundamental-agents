@@ -1,6 +1,6 @@
 # 基本面 Agent 演示
 
-这是金融多 Agent 计划的一个零服务 MVP：
+这是金融多 Agent 计划的一个本地 MVP，默认使用 LangGraph 状态图：
 
 ```text
 本地缓存
@@ -9,10 +9,13 @@
   -> 指标计算
   -> 验证器
   -> Markdown 报告
+  -> 人工审批 interrupt
+  -> checkpoint 恢复
   -> 无建议安全校验
 ```
 
-该演示使用本地示例 fixture。数字有意标记为演示数据，任何真实使用前都必须替换为已授权、point-in-time 的金融数据。
+默认缓存来自 SEC EDGAR `companyfacts`，覆盖三只美股。仓库中仍保留一份
+illustrative fixture，用于离线 UI 和流水线测试。
 
 ## 范围
 
@@ -29,33 +32,71 @@
 
 ## 运行
 
-在项目目录下执行：
+项目依赖已经安装在本地 `.venv` 中。下面的命令直接使用虚拟环境 Python：
 
 ```powershell
-python -m fundamental_agent.cli
+.\.venv\Scripts\python.exe -m fundamental_agent.cli --thread-id demo-001 --md-output sample_report.md --json-output sample_report.json
 ```
 
-或指定三只股票：
+第一次运行会在人工审批节点暂停，并输出 `thread_id` 和恢复命令。批准：
 
 ```powershell
-python -m fundamental_agent.cli --tickers AAPL MSFT NVDA --md-output sample_report.md --json-output sample_report.json
+.\.venv\Scripts\python.exe -m fundamental_agent.cli --thread-id demo-001 --approve --md-output sample_report.md --json-output sample_report.json
 ```
 
-只生成 Markdown 报告：
+拒绝：
 
 ```powershell
-python -m fundamental_agent.cli --tickers AAPL MSFT NVDA --md-output sample_report.md
+.\.venv\Scripts\python.exe -m fundamental_agent.cli --thread-id demo-001 --reject
 ```
+
+checkpoint 默认写入：
+
+```text
+data/checkpoints.sqlite
+```
+
+如果需要回到旧的 DAG-lite 引擎：
+
+```powershell
+.\.venv\Scripts\python.exe -m fundamental_agent.cli --engine daglite
+```
+
+## 刷新 SEC 缓存
+
+SEC 请求需要提供描述性的 `User-Agent`。在当前 PowerShell 会话中设置：
+
+```powershell
+$env:SEC_USER_AGENT='fundamental-agent-demo/0.1 research contact@example.com'
+```
+
+然后刷新本地缓存：
+
+```powershell
+.\.venv\Scripts\python.exe -m fundamental_agent.sec_ingest --tickers AAPL MSFT NVDA --as-of 2026-10-12 --out data/cache/quarterly_fundamentals.sec.json
+```
+
+抓取流程：
+
+1. 用 SEC `company_tickers.json` 把 ticker 映射到 CIK。
+2. 拉取 `data.sec.gov` 的 `companyfacts`。
+3. 只使用 `filed <= --as-of` 的事实。
+4. 取最近四个已披露 fiscal quarter。
+5. 缺失的单季值由累计值差分推导：
+   - `Q2 = 6M YTD - Q1`
+   - `Q3 = 9M YTD - 6M YTD`
+   - `Q4 = FY - 9M YTD`
+6. 每个季度都附带表单类型、accession number、申报日期和来源 URL。
 
 ## 测试
 
 ```powershell
-python -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
 ## 架构
 
-节点刻意保持显式：
+LangGraph 节点：
 
 1. `load_cache`
 2. `validate_cache`
@@ -63,20 +104,26 @@ python -m unittest discover -s tests -v
 4. `compute_metrics`
 5. `verify_metrics`
 6. `render_report`
-7. `safety_check`
+7. `human_approval`
+8. `safety_check`
 
-`fundamental_agent/graph.py` 是一个小型、按依赖顺序执行的 DAG 运行器。它让第一个里程碑无需安装工作流引擎即可运行。节点边界可以直接对应未来的 LangGraph `StateGraph`：
+默认执行引擎是 [langgraph_pipeline.py](fundamental_agent/langgraph_pipeline.py)。
+它使用 SQLite checkpointer，支持暂停、恢复和审批拒绝。
+
+`fundamental_agent/graph.py` 仍保留为 DAG-lite 备用引擎，用于对比和离线测试。
 
 ```text
 load_cache -> validate_cache -> supervisor -> compute_metrics
-  -> verify_metrics -> render_report -> safety_check
+  -> verify_metrics -> render_report -> human_approval
+  -> safety_check（批准）
+  -> END（拒绝）
 ```
 
 ## 迁移路径
 
-1. 用真实的本地缓存写入器替换 fixture JSON。
-2. 用 LangGraph `StateGraph` 替换 `graph.py`。
-3. 加入 LangGraph checkpointer 和用于人工审批的 interrupt 节点。
+1. 已加入 SEC EDGAR `companyfacts` 本地缓存写入器；下一步加强数据质量规则和重述处理。
+2. 已将默认流程迁移到 LangGraph `StateGraph`。
+3. 已加入 SQLite checkpointer、人工审批 interrupt 和 resume。
 4. 只有在确定性基线通过评测后，才加入 LLM Supervisor。
 5. 当权限和数据源扩展后，加入数据质量 Agent 和合规 Agent。
 6. 将风险、合规和订单执行保持在 LLM 运行时之外。
@@ -87,3 +134,9 @@ CLI 会写入：
 
 - `sample_report.md`：人类可读简报。
 - `sample_report.json`：结构化输出，每个指标点都附带来源、期间和数据日期。
+
+默认 CLI 使用的缓存是：
+
+```text
+data/cache/quarterly_fundamentals.sec.json
+```

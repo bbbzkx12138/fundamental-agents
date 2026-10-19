@@ -51,6 +51,21 @@ def verify_quarter_record(ticker: str, record: QuarterRecord) -> list[str]:
         raise ValueError(f"{ticker} {record.period}: total liabilities must be non-negative")
     if not record.source.strip():
         raise ValueError(f"{ticker} {record.period}: source is required")
+    provenance = (
+        record.source_url,
+        record.accession_number,
+        record.form_type,
+        record.filed_date,
+    )
+    if any(provenance):
+        if not all(provenance):
+            raise ValueError(
+                f"{ticker} {record.period}: incomplete SEC provenance metadata"
+            )
+        if record.filed_date and record.filed_date < record.period_end_date:
+            raise ValueError(
+                f"{ticker} {record.period}: filed_date predates period_end_date"
+            )
     notes.append(f"{ticker} {record.period}: record and source validated")
     return notes
 
