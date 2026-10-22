@@ -42,7 +42,7 @@ illustrative fixture，用于离线 UI 和流水线测试。
 第一次运行会在人工审批节点暂停，并输出 `thread_id` 和恢复命令。批准：
 
 ```powershell
-.\.venv\Scripts\python.exe -m fundamental_agent.cli --thread-id demo-001 --approve --md-output sample_report.md --json-output sample_report.json
+.\.venv\Scripts\python.exe -m fundamental_agent.cli --thread-id demo-001 --approve 
 ```
 
 拒绝：
