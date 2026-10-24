@@ -8,7 +8,6 @@
   -> 确定性 Supervisor 检查清单
   -> 指标计算
   -> 验证器
-  -> LLM 摘要与解释
   -> Markdown 报告
   -> 人工审批 interrupt
   -> checkpoint 恢复
@@ -51,19 +50,6 @@ illustrative fixture，用于离线 UI 和流水线测试。
 .\.venv\Scripts\python.exe -m fundamental_agent.cli --thread-id demo-001 --reject
 ```
 
-运行时会在终端输出节点进度，例如：
-
-```text
-正在加载 SEC 缓存...
-正在计算指标...
-正在验证指标...
-llm_summary 开始
-llm_summary 完成，来源：openai-compatible
-render_report 开始
-render_report 完成
-human_approval 等待中
-```
-
 checkpoint 默认写入：
 
 ```text
@@ -76,112 +62,13 @@ data/checkpoints.sqlite
 .\.venv\Scripts\python.exe -m fundamental_agent.cli --engine daglite
 ```
 
-## 环境配置
-
-项目根目录已经提供 `.env` 和 `.env.example`。使用前编辑 `.env`：
-
-```dotenv
-LLM_MODE=auto
-LLM_API_KEY=
-LLM_MODEL=
-LLM_BASE_URL=https://api.openai.com/v1
-LLM_MAX_TOKENS=4000
-LLM_TIMEOUT_SECONDS=180
-
-SEC_USER_AGENT=fundamental-agent-demo/0.1 research contact@example.com
-```
-
-- `LLM_MODE=auto`：有 Key 和模型名时调用 API，否则使用模板。
-- `LLM_MODE=api`：强制调用 API。
-- `LLM_MODE=template`：强制使用模板。
-- `LLM_MAX_TOKENS`：单次摘要最大输出 token，默认 4000。
-- `LLM_TIMEOUT_SECONDS`：模型请求超时时间，默认 180 秒。
-- `SEC_USER_AGENT`：SEC 要求的可识别 User-Agent。
-
-程序启动时会通过 `python-dotenv` 自动加载项目根目录 `.env`。
-系统环境变量优先级高于 `.env`，适合部署时覆盖本地配置。
-
-.env 已加入 `.gitignore`，不要把真实 API Key 提交到仓库。
-
-## LLM 摘要
-
-`llm_summary` 节点只读取已经验证的结构化指标，输出带 evidence 的摘要。
-
-三种模式：
-
-- `auto`：有 API Key 和模型名时调用模型，否则使用模板。
-- `api`：强制调用模型，缺少配置时直接报错。
-- `template`：强制使用确定性模板。
-
-无 Key 时可以直接运行：
-
-```powershell
-.\.venv\Scripts\python.exe -m fundamental_agent.cli --thread-id demo-template --llm-mode template
-```
-
-调用 OpenAI-compatible Chat Completions 接口：
-
-```powershell
-.\.venv\Scripts\python.exe -m fundamental_agent.cli --thread-id demo-api --llm-mode api
-```
-
-也支持：
-
-```text
-LLM_API_KEY
-LLM_MODEL
-LLM_BASE_URL
-OPENAI_API_KEY
-OPENAI_MODEL
-```
-
-API 失败、超时或返回格式不合法时，会自动回退到模板摘要，并在报告中标记 `summary_source`。
-
-## Trace、预算与评测
-
-每次 LangGraph 运行会写入本地 Trace：
-
-```text
-data/traces/<thread-id>.jsonl
-```
-
-Trace 包含节点耗时、状态、LLM 调用、token 用量、预算快照、错误和模板回退。
-API Key 和 `sk-...` 字符串会自动脱敏。
-
-预算配置：
-
-```dotenv
-LLM_RUN_TOKEN_BUDGET=12000
-LLM_COST_BUDGET_USD=0
-LLM_INPUT_PRICE_PER_MILLION=0
-LLM_OUTPUT_PRICE_PER_MILLION=0
-```
-
-金额预算需要通过价格变量配置；价格未知时保持 `0`，先使用 token 预算。
-
-运行 Golden Eval：
-
-```powershell
-.\.venv\Scripts\python.exe -m fundamental_agent.eval_runner
-```
-
-评测基准：
-
-```text
-evals/golden/fundamental_metrics.json
-```
-
-评测报告：
-
-```text
-evals/reports/latest.json
-```
-
-评测覆盖 SEC 指标、季度连续性、filing 追溯、摘要 evidence、无建议和预算快照。
-
 ## 刷新 SEC 缓存
 
-SEC 请求需要提供描述性的 `User-Agent`，默认从 `.env` 的 `SEC_USER_AGENT` 读取。
+SEC 请求需要提供描述性的 `User-Agent`。在当前 PowerShell 会话中设置：
+
+```powershell
+$env:SEC_USER_AGENT='fundamental-agent-demo/0.1 research contact@example.com'
+```
 
 然后刷新本地缓存：
 
@@ -216,10 +103,9 @@ LangGraph 节点：
 3. `supervisor`
 4. `compute_metrics`
 5. `verify_metrics`
-6. `llm_summary`
-7. `render_report`
-8. `human_approval`
-9. `safety_check`
+6. `render_report`
+7. `human_approval`
+8. `safety_check`
 
 默认执行引擎是 [langgraph_pipeline.py](fundamental_agent/langgraph_pipeline.py)。
 它使用 SQLite checkpointer，支持暂停、恢复和审批拒绝。
@@ -228,7 +114,7 @@ LangGraph 节点：
 
 ```text
 load_cache -> validate_cache -> supervisor -> compute_metrics
-  -> verify_metrics -> llm_summary -> render_report -> human_approval
+  -> verify_metrics -> render_report -> human_approval
   -> safety_check（批准）
   -> END（拒绝）
 ```
@@ -238,7 +124,7 @@ load_cache -> validate_cache -> supervisor -> compute_metrics
 1. 已加入 SEC EDGAR `companyfacts` 本地缓存写入器；下一步加强数据质量规则和重述处理。
 2. 已将默认流程迁移到 LangGraph `StateGraph`。
 3. 已加入 SQLite checkpointer、人工审批 interrupt 和 resume。
-4. 已加入受约束的 LLM 摘要与解释节点，支持 API 和模板降级。
+4. 只有在确定性基线通过评测后，才加入 LLM Supervisor。
 5. 当权限和数据源扩展后，加入数据质量 Agent 和合规 Agent。
 6. 将风险、合规和订单执行保持在 LLM 运行时之外。
 
