@@ -1,0 +1,8 @@
+{
+  "name": "normal_three_tickers",
+  "tickers": ["AAPL", "MSFT", "NVDA"],
+  "cache": "data/cache/quarterly_fundamentals.sec.json",
+  "golden": "evals/golden/fundamental_metrics.json",
+  "tolerance": 0.01,
+  "llm_mode": "template"
+}

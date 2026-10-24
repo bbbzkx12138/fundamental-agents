@@ -1,0 +1,12 @@
+.env
+.venv/
+.idea/
+__pycache__/
+*.py[cod]
+
+data/checkpoints*.sqlite
+data/checkpoints*.sqlite-*
+data/traces/
+data/trace_template_report.*
+
+evals/reports/
