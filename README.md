@@ -42,13 +42,26 @@ illustrative fixture，用于离线 UI 和流水线测试。
 第一次运行会在人工审批节点暂停，并输出 `thread_id` 和恢复命令。批准：
 
 ```powershell
-.\.venv\Scripts\python.exe -m fundamental_agent.cli --thread-id demo-001 --approve 
+.\.venv\Scripts\python.exe -m fundamental_agent.cli --thread-id demo-001 --approve --md-output sample_report.md --json-output sample_report.json
 ```
 
 拒绝：
 
 ```powershell
 .\.venv\Scripts\python.exe -m fundamental_agent.cli --thread-id demo-001 --reject
+```
+
+运行时会在终端输出节点进度，例如：
+
+```text
+正在加载 SEC 缓存...
+正在计算指标...
+正在验证指标...
+llm_summary 开始
+llm_summary 完成，来源：openai-compatible
+render_report 开始
+render_report 完成
+human_approval 等待中
 ```
 
 checkpoint 默认写入：
@@ -123,6 +136,48 @@ OPENAI_MODEL
 ```
 
 API 失败、超时或返回格式不合法时，会自动回退到模板摘要，并在报告中标记 `summary_source`。
+
+## Trace、预算与评测
+
+每次 LangGraph 运行会写入本地 Trace：
+
+```text
+data/traces/<thread-id>.jsonl
+```
+
+Trace 包含节点耗时、状态、LLM 调用、token 用量、预算快照、错误和模板回退。
+API Key 和 `sk-...` 字符串会自动脱敏。
+
+预算配置：
+
+```dotenv
+LLM_RUN_TOKEN_BUDGET=12000
+LLM_COST_BUDGET_USD=0
+LLM_INPUT_PRICE_PER_MILLION=0
+LLM_OUTPUT_PRICE_PER_MILLION=0
+```
+
+金额预算需要通过价格变量配置；价格未知时保持 `0`，先使用 token 预算。
+
+运行 Golden Eval：
+
+```powershell
+.\.venv\Scripts\python.exe -m fundamental_agent.eval_runner
+```
+
+评测基准：
+
+```text
+evals/golden/fundamental_metrics.json
+```
+
+评测报告：
+
+```text
+evals/reports/latest.json
+```
+
+评测覆盖 SEC 指标、季度连续性、filing 追溯、摘要 evidence、无建议和预算快照。
 
 ## 刷新 SEC 缓存
 

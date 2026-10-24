@@ -1,0 +1,190 @@
+{
+  "as_of": "2026-10-10",
+  "currency": "USD",
+  "source": "local demo fixture (illustrative, not audited)",
+  "tickers": {
+    "AAPL": {
+      "company_name": "Apple Inc. (demo fixture)",
+      "quarters": [
+        {
+          "period": "2025-Q4",
+          "period_end_date": "2025-12-31",
+          "data_date": "2026-01-30",
+          "currency": "USD",
+          "revenue": 124300000000.0,
+          "gross_profit": 58100000000.0,
+          "net_income": 36300000000.0,
+          "operating_cash_flow": 40000000000.0,
+          "capital_expenditure": 3000000000.0,
+          "total_assets": 365000000000.0,
+          "total_liabilities": 285000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q1",
+          "period_end_date": "2026-03-31",
+          "data_date": "2026-04-30",
+          "currency": "USD",
+          "revenue": 128500000000.0,
+          "gross_profit": 60000000000.0,
+          "net_income": 37000000000.0,
+          "operating_cash_flow": 41000000000.0,
+          "capital_expenditure": 3200000000.0,
+          "total_assets": 372000000000.0,
+          "total_liabilities": 288000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q2",
+          "period_end_date": "2026-06-30",
+          "data_date": "2026-07-30",
+          "currency": "USD",
+          "revenue": 132000000000.0,
+          "gross_profit": 61800000000.0,
+          "net_income": 38200000000.0,
+          "operating_cash_flow": 42500000000.0,
+          "capital_expenditure": 3100000000.0,
+          "total_assets": 378000000000.0,
+          "total_liabilities": 290000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q3",
+          "period_end_date": "2026-09-30",
+          "data_date": "2026-10-05",
+          "currency": "USD",
+          "revenue": 136400000000.0,
+          "gross_profit": 63500000000.0,
+          "net_income": 39500000000.0,
+          "operating_cash_flow": 44000000000.0,
+          "capital_expenditure": 3300000000.0,
+          "total_assets": 385000000000.0,
+          "total_liabilities": 292000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        }
+      ]
+    },
+    "MSFT": {
+      "company_name": "Microsoft Corporation (demo fixture)",
+      "quarters": [
+        {
+          "period": "2025-Q4",
+          "period_end_date": "2025-12-31",
+          "data_date": "2026-01-29",
+          "currency": "USD",
+          "revenue": 65600000000.0,
+          "gross_profit": 45000000000.0,
+          "net_income": 24700000000.0,
+          "operating_cash_flow": 35000000000.0,
+          "capital_expenditure": 15000000000.0,
+          "total_assets": 512000000000.0,
+          "total_liabilities": 240000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q1",
+          "period_end_date": "2026-03-31",
+          "data_date": "2026-04-29",
+          "currency": "USD",
+          "revenue": 68000000000.0,
+          "gross_profit": 46500000000.0,
+          "net_income": 25500000000.0,
+          "operating_cash_flow": 36200000000.0,
+          "capital_expenditure": 15500000000.0,
+          "total_assets": 520000000000.0,
+          "total_liabilities": 243000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q2",
+          "period_end_date": "2026-06-30",
+          "data_date": "2026-07-29",
+          "currency": "USD",
+          "revenue": 70200000000.0,
+          "gross_profit": 48000000000.0,
+          "net_income": 26400000000.0,
+          "operating_cash_flow": 37500000000.0,
+          "capital_expenditure": 16000000000.0,
+          "total_assets": 528000000000.0,
+          "total_liabilities": 246000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q3",
+          "period_end_date": "2026-09-30",
+          "data_date": "2026-10-06",
+          "currency": "USD",
+          "revenue": 72500000000.0,
+          "gross_profit": 49500000000.0,
+          "net_income": 27300000000.0,
+          "operating_cash_flow": 38800000000.0,
+          "capital_expenditure": 16500000000.0,
+          "total_assets": 536000000000.0,
+          "total_liabilities": 249000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        }
+      ]
+    },
+    "NVDA": {
+      "company_name": "NVIDIA Corporation (demo fixture)",
+      "quarters": [
+        {
+          "period": "2025-Q4",
+          "period_end_date": "2025-12-31",
+          "data_date": "2026-02-25",
+          "currency": "USD",
+          "revenue": 44000000000.0,
+          "gross_profit": 33000000000.0,
+          "net_income": 22000000000.0,
+          "operating_cash_flow": 25000000000.0,
+          "capital_expenditure": 1200000000.0,
+          "total_assets": 120000000000.0,
+          "total_liabilities": 38000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q1",
+          "period_end_date": "2026-03-31",
+          "data_date": "2026-05-27",
+          "currency": "USD",
+          "revenue": 46500000000.0,
+          "gross_profit": 34800000000.0,
+          "net_income": 23400000000.0,
+          "operating_cash_flow": 26500000000.0,
+          "capital_expenditure": 1300000000.0,
+          "total_assets": 128000000000.0,
+          "total_liabilities": 40000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q2",
+          "period_end_date": "2026-06-30",
+          "data_date": "2026-08-26",
+          "currency": "USD",
+          "revenue": 49000000000.0,
+          "gross_profit": 36700000000.0,
+          "net_income": 24800000000.0,
+          "operating_cash_flow": 28000000000.0,
+          "capital_expenditure": 1400000000.0,
+          "total_assets": 136000000000.0,
+          "total_liabilities": 42000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        },
+        {
+          "period": "2026-Q3",
+          "period_end_date": "2026-09-30",
+          "data_date": "2026-10-07",
+          "currency": "USD",
+          "revenue": 52000000000.0,
+          "gross_profit": 39000000000.0,
+          "net_income": 26500000000.0,
+          "operating_cash_flow": 29500000000.0,
+          "capital_expenditure": 1500000000.0,
+          "total_assets": 145000000000.0,
+          "total_liabilities": 44000000000.0,
+          "source": "demo_fixture_v1: illustrative quarterly data"
+        }
+      ]
+    }
+  }
+}

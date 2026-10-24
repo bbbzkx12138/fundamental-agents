@@ -1,0 +1,19 @@
+{"timestamp": "2026-10-23T14:53:11.565+08:00", "run_id": "trace-api-001", "event": "run_start", "node": null, "status": null, "duration_ms": null, "metadata": {"thread_id": "trace-api-001"}}
+{"timestamp": "2026-10-23T14:53:11.575+08:00", "run_id": "trace-api-001", "event": "node_start", "node": "load_cache", "status": "started", "duration_ms": null, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.576+08:00", "run_id": "trace-api-001", "event": "node_end", "node": "load_cache", "status": "ok", "duration_ms": 1.02, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.578+08:00", "run_id": "trace-api-001", "event": "node_start", "node": "validate_cache", "status": "started", "duration_ms": null, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.578+08:00", "run_id": "trace-api-001", "event": "node_end", "node": "validate_cache", "status": "ok", "duration_ms": 0.71, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.580+08:00", "run_id": "trace-api-001", "event": "node_start", "node": "supervisor", "status": "started", "duration_ms": null, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.580+08:00", "run_id": "trace-api-001", "event": "node_end", "node": "supervisor", "status": "ok", "duration_ms": 0.46, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.581+08:00", "run_id": "trace-api-001", "event": "node_start", "node": "compute_metrics", "status": "started", "duration_ms": null, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.582+08:00", "run_id": "trace-api-001", "event": "node_end", "node": "compute_metrics", "status": "ok", "duration_ms": 1.03, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.583+08:00", "run_id": "trace-api-001", "event": "node_start", "node": "verify_metrics", "status": "started", "duration_ms": null, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.584+08:00", "run_id": "trace-api-001", "event": "node_end", "node": "verify_metrics", "status": "ok", "duration_ms": 0.83, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.585+08:00", "run_id": "trace-api-001", "event": "node_start", "node": "llm_summary", "status": "started", "duration_ms": null, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.586+08:00", "run_id": "trace-api-001", "event": "budget_check", "node": "llm_summary", "status": "ok", "duration_ms": null, "metadata": {"reason": "预算检查通过", "estimated_input_tokens": 1928, "max_output_tokens": 4000, "max_total_tokens": 12000, "max_cost_usd": 0.0, "input_tokens": 0, "output_tokens": 0, "total_tokens": 0, "estimated_cost_usd": 0.0, "calls": 0, "exceeded": false}}
+{"timestamp": "2026-10-23T14:53:11.647+08:00", "run_id": "trace-api-001", "event": "node_end", "node": "llm_summary", "status": "ok", "duration_ms": 62.5, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.649+08:00", "run_id": "trace-api-001", "event": "node_start", "node": "render_report", "status": "started", "duration_ms": null, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.650+08:00", "run_id": "trace-api-001", "event": "node_end", "node": "render_report", "status": "ok", "duration_ms": 1.39, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.651+08:00", "run_id": "trace-api-001", "event": "node_start", "node": "human_approval", "status": "started", "duration_ms": null, "metadata": {}}
+{"timestamp": "2026-10-23T14:53:11.651+08:00", "run_id": "trace-api-001", "event": "node_end", "node": "human_approval", "status": "interrupted", "duration_ms": 0.47, "metadata": {"error_type": "GraphInterrupt"}}
+{"timestamp": "2026-10-23T14:53:11.666+08:00", "run_id": "trace-api-001", "event": "run_interrupted", "node": null, "status": "waiting_approval", "duration_ms": null, "metadata": {}}
