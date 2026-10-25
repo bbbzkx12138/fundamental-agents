@@ -1,5 +1,6 @@
 {
   "name": "normal_three_tickers",
+  "eval_version": "1.0",
   "tickers": ["AAPL", "MSFT", "NVDA"],
   "cache": "data/cache/quarterly_fundamentals.sec.json",
   "golden": "evals/golden/fundamental_metrics.json",

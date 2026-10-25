@@ -179,6 +179,30 @@ evals/reports/latest.json
 
 评测覆盖 SEC 指标、季度连续性、filing 追溯、摘要 evidence、无建议和预算快照。
 
+## 回归闸门
+
+统一检查命令：
+
+```powershell
+.\.venv\Scripts\python.exe -m fundamental_agent.check
+```
+
+或者：
+
+```powershell
+.\scripts\check.ps1
+```
+
+它会依次执行全部单元测试和 Golden Eval，全部通过才返回成功。
+
+GitHub Actions 配置在：
+
+```text
+.github/workflows/ci.yml
+```
+
+负向测试覆盖缺少季度、缺少 provenance、未来日期、非法 JSON、预算超限、API 失败和审批拒绝。
+
 ## 刷新 SEC 缓存
 
 SEC 请求需要提供描述性的 `User-Agent`，默认从 `.env` 的 `SEC_USER_AGENT` 读取。

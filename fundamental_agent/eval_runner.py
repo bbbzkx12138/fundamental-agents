@@ -167,6 +167,7 @@ def main() -> int:
 
     result = {
         "case": case.get("name", case_path.stem),
+        "eval_version": case.get("eval_version", "1.0"),
         "passed": passed,
         "checks": checks,
     }
