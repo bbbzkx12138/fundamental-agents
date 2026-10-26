@@ -7,6 +7,8 @@ __pycache__/
 data/checkpoints*.sqlite
 data/checkpoints*.sqlite-*
 data/traces/
+data/reports/
+data/api*.log
 data/trace_template_report.*
 
 evals/reports/

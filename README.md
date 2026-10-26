@@ -103,6 +103,52 @@ SEC_USER_AGENT=fundamental-agent-demo/0.1 research contact@example.com
 
 .env 已加入 `.gitignore`，不要把真实 API Key 提交到仓库。
 
+## 内部 API
+
+本地启动：
+
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn fundamental_agent.api:app --host 127.0.0.1 --port 8000
+```
+
+接口文档：
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+主要接口：
+
+| 方法 | 路径 | 作用 |
+|---|---|---|
+| GET | `/health` | 健康检查 |
+| POST | `/runs` | 创建运行并生成草稿 |
+| GET | `/runs/{thread_id}` | 查询运行状态 |
+| POST | `/runs/{thread_id}/approve` | 批准报告 |
+| POST | `/runs/{thread_id}/reject` | 拒绝报告 |
+| GET | `/runs/{thread_id}/report` | 获取 Markdown 和结构化 JSON |
+| GET | `/runs/{thread_id}/trace` | 获取 Trace 事件 |
+
+API 默认使用独立的 SQLite checkpoint：
+
+```text
+data/checkpoints.api.sqlite
+```
+
+## Docker Compose
+
+```powershell
+docker compose up --build
+```
+
+服务地址：
+
+```text
+http://127.0.0.1:8000
+```
+
+`data/` 会挂载到容器内，checkpoint、Trace 和报告会持久化到本地。
+
 ## LLM 摘要
 
 `llm_summary` 节点只读取已经验证的结构化指标，输出带 evidence 的摘要。

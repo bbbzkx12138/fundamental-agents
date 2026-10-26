@@ -1,0 +1,24 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      API_CACHE_PATH: /app/data/cache/quarterly_fundamentals.sec.json
+      API_CHECKPOINT_DB: /app/data/checkpoints.api.sqlite
+      API_TRACE_DIR: /app/data/traces
+      API_REPORT_DIR: /app/data/reports
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"
+      interval: 30s
+      timeout: 5s
+      retries: 3
