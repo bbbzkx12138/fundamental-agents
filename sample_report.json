@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T12:56:20+08:00",
+  "generated_at": "2026-10-26T13:16:13+08:00",
   "data_as_of": "2026-10-12",
   "cache_source": "SEC EDGAR companyfacts via data.sec.gov; point-in-time cutoff 2026-10-12",
   "tickers": [
@@ -1125,27 +1125,27 @@
   "summaries": [
     {
       "ticker": "AAPL",
-      "summary": "AAPL在FY2026-Q1收入与净利润环比增速较高，FY2026-Q2至Q3收入环比回落，毛利率指标逐步上升，资产负债率较FY2025-Q4下降。",
+      "summary": "Apple FY2026-Q3收入环比略降，净利润环比微增，毛利率上升，自由现金流为正，资产负债率仍较高。",
       "observations": [
         {
-          "text": "FY2026-Q1收入环比增长40.3%，净利润环比增长53.27%。",
+          "text": "FY2026-Q3收入环比小幅下降，净利润环比微增。",
           "evidence": [
             {
-              "period": "FY2026-Q1",
+              "period": "FY2026-Q3",
               "metric": "revenue_growth_qoq"
             },
             {
-              "period": "FY2026-Q1",
+              "period": "FY2026-Q3",
               "metric": "net_income_growth_qoq"
             }
           ]
         },
         {
-          "text": "FY2026-Q3毛利率为50.06%，资产负债率为71.95%。",
+          "text": "FY2026-Q3自由现金流为正，资产负债率处于较高水平。",
           "evidence": [
             {
               "period": "FY2026-Q3",
-              "metric": "gross_margin"
+              "metric": "free_cash_flow"
             },
             {
               "period": "FY2026-Q3",
@@ -1155,52 +1155,52 @@
         }
       ],
       "uncertainties": [
-        "缺少同比指标，无法判断季度环比波动是否反映长期趋势。",
-        "未提供业务分部与现金流构成，难以解释自由现金流波动来源。"
+        "缺少同比数据，无法判断长期趋势。",
+        "缺少分部收入、指引与资本开支明细。"
       ]
     },
     {
       "ticker": "MSFT",
-      "summary": "MSFT已披露环比增速的季度收入均为正增长，净利润增速波动，毛利率逐步回落，资产负债率指标保持平稳。",
+      "summary": "Microsoft FY2026-Q4收入与净利润环比增长，毛利率较高，自由现金流为正，资产负债率较低。",
       "observations": [
         {
-          "text": "FY2026-Q2收入环比增长4.63%，净利润环比增长38.6%。",
+          "text": "FY2026-Q4收入环比增长，净利润环比增长。",
           "evidence": [
             {
-              "period": "FY2026-Q2",
+              "period": "FY2026-Q4",
               "metric": "revenue_growth_qoq"
             },
             {
-              "period": "FY2026-Q2",
+              "period": "FY2026-Q4",
               "metric": "net_income_growth_qoq"
             }
           ]
         },
         {
-          "text": "FY2026-Q2自由现金流为5882000000美元，资产负债率为41.25%。",
+          "text": "FY2026-Q4自由现金流为正，资产负债率处于较低水平。",
           "evidence": [
             {
-              "period": "FY2026-Q2",
+              "period": "FY2026-Q4",
               "metric": "free_cash_flow"
             },
             {
-              "period": "FY2026-Q2",
+              "period": "FY2026-Q4",
               "metric": "debt_to_asset_ratio"
             }
           ]
         }
       ],
       "uncertainties": [
-        "缺少同比指标，无法判断收入与净利润增速的长期表现。",
-        "未提供现金流明细，难以解释FY2026-Q2自由现金流变化原因。"
+        "缺少同比数据，无法判断年度增长质量。",
+        "缺少云、AI等分部收入与费用明细。"
       ]
     },
     {
       "ticker": "NVDA",
-      "summary": "NVDA已披露环比增速的季度收入均保持增长，FY2027-Q2净利润环比增速放缓，毛利率指标维持高位，资产负债率较FY2026-Q4上升。",
+      "summary": "NVIDIA FY2027-Q2收入与净利润环比增长，毛利率较高，自由现金流为正，资产负债率较上季上升。",
       "observations": [
         {
-          "text": "FY2027-Q2收入环比增长17.9%，净利润环比增长2.34%。",
+          "text": "FY2027-Q2收入环比增长，净利润环比增长。",
           "evidence": [
             {
               "period": "FY2027-Q2",
@@ -1213,22 +1213,22 @@
           ]
         },
         {
-          "text": "FY2027-Q2自由现金流为21400000000美元，资产负债率为28.5%。",
+          "text": "FY2027-Q2毛利率保持高位，自由现金流为正。",
           "evidence": [
             {
               "period": "FY2027-Q2",
-              "metric": "free_cash_flow"
+              "metric": "gross_margin"
             },
             {
               "period": "FY2027-Q2",
-              "metric": "debt_to_asset_ratio"
+              "metric": "free_cash_flow"
             }
           ]
         }
       ],
       "uncertainties": [
-        "缺少同比指标，无法判断高增长是否延续。",
-        "未提供客户或产品收入构成，难以解释FY2027-Q2净利润环比增速下降。"
+        "缺少同比数据，无法判断增长持续性。",
+        "缺少客户集中度、供应与需求指引。"
       ]
     }
   ],

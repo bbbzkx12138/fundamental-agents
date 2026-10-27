@@ -35,6 +35,8 @@ class ApiSettings:
     trace_dir: Path
     report_dir: Path
     default_llm_mode: str = "auto"
+    auth_token: str = ""
+    require_auth: bool = True
 
     @classmethod
     def from_env(cls) -> "ApiSettings":
@@ -56,6 +58,9 @@ class ApiSettings:
                 PROJECT_ROOT / "data" / "reports",
             ),
             default_llm_mode="auto",
+            auth_token=os.getenv("API_AUTH_TOKEN", ""),
+            require_auth=os.getenv("API_REQUIRE_AUTH", "true").strip().lower()
+            not in {"0", "false", "no"},
         )
 
 

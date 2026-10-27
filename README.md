@@ -129,6 +129,36 @@ http://127.0.0.1:8000/docs
 | GET | `/runs/{thread_id}/report` | 获取 Markdown 和结构化 JSON |
 | GET | `/runs/{thread_id}/trace` | 获取 Trace 事件 |
 
+除 `/health` 外，所有接口默认要求鉴权。`.env` 中配置：
+
+```dotenv
+API_REQUIRE_AUTH=true
+API_AUTH_TOKEN=replace-with-a-long-random-token
+```
+
+请求时使用 Bearer Token：
+
+```powershell
+$headers = @{
+  Authorization = "Bearer 你的 API_AUTH_TOKEN"
+  "Content-Type" = "application/json"
+}
+
+Invoke-RestMethod `
+  -Method Post `
+  -Uri "http://127.0.0.1:8000/runs" `
+  -Headers $headers `
+  -Body '{"tickers":["AAPL","MSFT","NVDA"],"llm_mode":"template"}'
+```
+
+也支持：
+
+```text
+X-API-Key: 你的 API_AUTH_TOKEN
+```
+
+Swagger 页面右上角的 Authorize 按钮可以填入 Bearer Token。
+
 API 默认使用独立的 SQLite checkpoint：
 
 ```text
