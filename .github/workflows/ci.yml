@@ -10,6 +10,8 @@ jobs:
     env:
       LLM_MODE: template
       SEC_USER_AGENT: ci-fundamental-agent/0.1
+      API_REQUIRE_AUTH: "true"
+      API_AUTH_TOKEN: ci-test-token
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
