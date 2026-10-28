@@ -213,6 +213,27 @@ OPENAI_MODEL
 
 API 失败、超时或返回格式不合法时，会自动回退到模板摘要，并在报告中标记 `summary_source`。
 
+## Compliance Agent
+
+合规检查位于 `llm_summary` 之后、人工审批之前：
+
+```text
+llm_summary -> compliance -> render_report -> human_approval
+```
+
+当前规则检查：
+
+- 投资建议免责声明
+- 买入、卖出、持有和目标价类表述
+- 收益保证、稳赚、无风险收益类表述
+- 摘要 evidence 是否存在于结构化指标
+- SEC source、source_url、accession_number、filed_date
+- filed_date 是否早于 period_end_date
+- 摘要来源是否已知
+
+合规不通过时，LangGraph 直接结束，不进入人工审批，也不会写最终报告。
+API 返回状态为 `compliance_failed`。
+
 ## Trace、预算与评测
 
 每次 LangGraph 运行会写入本地 Trace：
@@ -317,9 +338,10 @@ LangGraph 节点：
 4. `compute_metrics`
 5. `verify_metrics`
 6. `llm_summary`
-7. `render_report`
-8. `human_approval`
-9. `safety_check`
+7. `compliance`
+8. `render_report`
+9. `human_approval`
+10. `safety_check`
 
 默认执行引擎是 [langgraph_pipeline.py](fundamental_agent/langgraph_pipeline.py)。
 它使用 SQLite checkpointer，支持暂停、恢复和审批拒绝。
@@ -328,7 +350,7 @@ LangGraph 节点：
 
 ```text
 load_cache -> validate_cache -> supervisor -> compute_metrics
-  -> verify_metrics -> llm_summary -> render_report -> human_approval
+  -> verify_metrics -> llm_summary -> compliance -> render_report -> human_approval
   -> safety_check（批准）
   -> END（拒绝）
 ```

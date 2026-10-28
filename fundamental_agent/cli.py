@@ -172,6 +172,14 @@ def main() -> int:
         )
         return 0
 
+    if state.get("compliance") and not state["compliance"].get("passed"):
+        trace.event("run_finished", status="compliance_failed")
+        print("合规检查未通过，未生成最终报告。")
+        for violation in state["compliance"].get("violations", []):
+            print(f"- {violation}")
+        print(f"thread_id: {thread_id}")
+        return 2
+
     if not state.get("approved"):
         trace.event("run_finished", status="rejected")
         print("审批未通过，未生成最终报告。")

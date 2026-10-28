@@ -27,6 +27,7 @@ class RunResponse(BaseModel):
     summary_source: str | None = None
     llm_model: str | None = None
     budget: dict = Field(default_factory=dict)
+    compliance: dict | None = None
     draft_preview: str | None = None
     trace_path: str | None = None
 
@@ -39,6 +40,7 @@ class ReportResponse(BaseModel):
     summary_source: str | None = None
     llm_model: str | None = None
     budget: dict = Field(default_factory=dict)
+    compliance: dict | None = None
     trace_path: str | None = None
 
 

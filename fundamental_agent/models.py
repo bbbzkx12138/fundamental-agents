@@ -105,6 +105,16 @@ class SummaryBatch(BaseModel):
     summaries: list[TickerLLMSummary]
 
 
+class ComplianceDecision(BaseModel):
+    """报告合规检查结果。"""
+
+    passed: bool
+    violations: list[str] = Field(default_factory=list)
+    warnings: list[str] = Field(default_factory=list)
+    rules_version: str = "1.0"
+    checked_at: str
+
+
 class FundamentalBrief(BaseModel):
     """顶层结构化输出。"""
 
@@ -117,3 +127,4 @@ class FundamentalBrief(BaseModel):
     summaries: list[TickerLLMSummary] = Field(default_factory=list)
     summary_source: str | None = None
     llm_model: str | None = None
+    compliance: ComplianceDecision | None = None

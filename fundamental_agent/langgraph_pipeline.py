@@ -11,6 +11,7 @@ from uuid import uuid4
 from langgraph.graph import END, START, StateGraph
 from langgraph.types import interrupt
 
+from .compliance import evaluate_compliance
 from .config import PROJECT_ROOT
 from .data_loader import load_cache, select_tickers
 from .llm_provider import get_summary_provider
@@ -40,6 +41,7 @@ class PipelineState(TypedDict, total=False):
     summary_source: str | None
     llm_model: str | None
     budget_snapshot: dict[str, Any]
+    compliance: dict[str, Any]
     approved: bool
     approval_comment: str
 
@@ -169,6 +171,32 @@ def build_langgraph(
         log_progress("render_report 完成")
         return result
 
+    def compliance_node(state: PipelineState) -> dict[str, Any]:
+        log_progress("正在执行合规检查...")
+        brief = FundamentalBrief.model_validate(state["brief"])
+        draft_markdown = render_markdown(brief)
+        decision = evaluate_compliance(brief, draft_markdown)
+        notes = list(state["verification_notes"])
+        if decision.passed:
+            notes.append("合规检查通过。")
+        else:
+            notes.append(
+                "合规检查未通过："
+                + "；".join(decision.violations)
+            )
+        brief = brief.model_copy(
+            update={
+                "compliance": decision,
+                "verification_notes": notes,
+            }
+        )
+        return {
+            "brief": brief.model_dump(mode="json"),
+            "compliance": decision.model_dump(mode="json"),
+            "markdown": render_markdown(brief),
+            "verification_notes": notes,
+        }
+
     def human_approval_node(state: PipelineState) -> dict[str, Any]:
         """暂停并等待人工审批。
 
@@ -215,6 +243,9 @@ def build_langgraph(
     def approval_route(state: PipelineState) -> str:
         return "approved" if state.get("approved") else "rejected"
 
+    def compliance_route(state: PipelineState) -> str:
+        return "passed" if state.get("compliance", {}).get("passed") else "blocked"
+
     def traced(name: str, node_fn):
         def wrapped(state: PipelineState):
             with trace.node(name):
@@ -228,6 +259,7 @@ def build_langgraph(
     graph.add_node("compute_metrics", traced("compute_metrics", compute_metrics_node))
     graph.add_node("verify_metrics", traced("verify_metrics", verify_metrics_node))
     graph.add_node("llm_summary", traced("llm_summary", llm_summary_node))
+    graph.add_node("compliance", traced("compliance", compliance_node))
     graph.add_node("render_report", traced("render_report", render_report_node))
     graph.add_node("human_approval", traced("human_approval", human_approval_node))
     graph.add_node("safety_check", traced("safety_check", safety_check_node))
@@ -238,7 +270,12 @@ def build_langgraph(
     graph.add_edge("supervisor", "compute_metrics")
     graph.add_edge("compute_metrics", "verify_metrics")
     graph.add_edge("verify_metrics", "llm_summary")
-    graph.add_edge("llm_summary", "render_report")
+    graph.add_edge("llm_summary", "compliance")
+    graph.add_conditional_edges(
+        "compliance",
+        compliance_route,
+        {"passed": "render_report", "blocked": END},
+    )
     graph.add_edge("render_report", "human_approval")
     graph.add_conditional_edges(
         "human_approval",

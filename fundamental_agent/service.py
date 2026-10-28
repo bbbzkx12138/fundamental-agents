@@ -143,6 +143,7 @@ class RunService:
             "summary_source": values.get("summary_source"),
             "llm_model": values.get("llm_model"),
             "budget": values.get("budget_snapshot", {}),
+            "compliance": values.get("compliance"),
             "trace_path": str(self._trace_path(thread_id)),
         }
 
@@ -250,6 +251,8 @@ class RunService:
     ) -> dict[str, Any]:
         if state.get("__interrupt__"):
             status = "waiting_approval"
+        elif state.get("compliance") and not state["compliance"].get("passed"):
+            status = "compliance_failed"
         elif state.get("approved") is True:
             status = "approved"
         elif state.get("approved") is False:
@@ -263,6 +266,7 @@ class RunService:
             "summary_source": state.get("summary_source"),
             "llm_model": state.get("llm_model"),
             "budget": state.get("budget_snapshot", {}),
+            "compliance": state.get("compliance"),
             "draft_preview": preview[:1200] if preview else None,
             "trace_path": str(trace.path),
         }
