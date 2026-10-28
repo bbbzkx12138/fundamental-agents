@@ -10,10 +10,12 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT
+from .compliance import evaluate_compliance
 from .data_loader import load_cache, select_tickers
 from .llm_provider import TemplateSummaryProvider
 from .llm_summary import summarize_brief, validate_summary_batch
 from .pipeline import assemble_brief
+from .report import render_markdown
 
 
 NUMERIC_FIELDS = (
@@ -141,6 +143,10 @@ def main() -> int:
             type("Batch", (), {"summaries": summary_brief.summaries})(),
             brief,
         )
+        compliance = evaluate_compliance(
+            summary_brief,
+            render_markdown(summary_brief),
+        )
         _check(
             checks,
             "summary:evidence",
@@ -153,6 +159,18 @@ def main() -> int:
             "budget:snapshot",
             "total_tokens" in budget and budget["exceeded"] is False,
             json.dumps(budget, ensure_ascii=False),
+        )
+        _check(
+            checks,
+            "compliance:passed",
+            compliance.passed,
+            json.dumps(
+                {
+                    "violations": compliance.violations,
+                    "warnings": compliance.warnings,
+                },
+                ensure_ascii=False,
+            ),
         )
         passed = all(check["passed"] for check in checks)
     except Exception as exc:

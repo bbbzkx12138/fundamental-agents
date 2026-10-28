@@ -30,6 +30,26 @@ def render_markdown(brief: FundamentalBrief) -> str:
         lines.extend(_render_ticker(ticker, summaries.get(ticker.ticker)))
         lines.append("")
 
+    if brief.compliance is not None:
+        lines.extend(
+            [
+                "## 合规检查",
+                "",
+                f"- 结果：{'通过' if brief.compliance.passed else '未通过'}",
+                f"- 规则版本：{brief.compliance.rules_version}",
+                f"- 检查时间：{brief.compliance.checked_at}",
+            ]
+        )
+        if brief.compliance.violations:
+            lines.append("")
+            lines.append("违规项：")
+            lines.extend(f"- {item}" for item in brief.compliance.violations)
+        if brief.compliance.warnings:
+            lines.append("")
+            lines.append("警告：")
+            lines.extend(f"- {item}" for item in brief.compliance.warnings)
+        lines.append("")
+
     lines.extend(
         [
             "## 校验记录",

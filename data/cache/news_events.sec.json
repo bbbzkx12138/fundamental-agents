@@ -1,0 +1,281 @@
+{
+  "as_of": "2026-10-28",
+  "source": "SEC EDGAR submissions (8-K/8-K/A); point-in-time cutoff 2026-10-28",
+  "events": [
+    {
+      "event_id": "sec-8k-0001045810-26-000078",
+      "ticker": "NVDA",
+      "company_name": "NVIDIA CORP",
+      "event_type": "other_event",
+      "headline": "NVIDIA CORP files 8-K (8.01)",
+      "source": "SEC EDGAR submissions (8-K/8-K/A)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000078/nvda-20260902.htm",
+      "accession_number": "0001045810-26-000078",
+      "form_type": "8-K",
+      "published_at": "2026-09-03T12:03:56Z",
+      "filed_date": "2026-09-03",
+      "report_date": "2026-09-02",
+      "items": [
+        "8.01"
+      ],
+      "primary_document": "nvda-20260902.htm",
+      "summary": null
+    },
+    {
+      "event_id": "sec-8k-0001193125-26-380280",
+      "ticker": "MSFT",
+      "company_name": "MICROSOFT CORP",
+      "event_type": "regulation_fd",
+      "headline": "MICROSOFT CORP files 8-K (7.01, 9.01)",
+      "source": "SEC EDGAR submissions (8-K/8-K/A)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526380280/d291965d8k.htm",
+      "accession_number": "0001193125-26-380280",
+      "form_type": "8-K",
+      "published_at": "2026-09-02T20:30:24Z",
+      "filed_date": "2026-09-02",
+      "report_date": "2026-09-02",
+      "items": [
+        "7.01",
+        "9.01"
+      ],
+      "primary_document": "d291965d8k.htm",
+      "summary": null
+    },
+    {
+      "event_id": "sec-8k-0001140361-26-035325",
+      "ticker": "AAPL",
+      "company_name": "Apple Inc.",
+      "event_type": "amendment",
+      "headline": "Apple Inc. files 8-K/A (5.02)",
+      "source": "SEC EDGAR submissions (8-K/8-K/A)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126035325/ef20081427_8ka.htm",
+      "accession_number": "0001140361-26-035325",
+      "form_type": "8-K/A",
+      "published_at": "2026-09-01T20:30:35Z",
+      "filed_date": "2026-09-01",
+      "report_date": "2026-04-17",
+      "items": [
+        "5.02"
+      ],
+      "primary_document": "ef20081427_8ka.htm",
+      "summary": null
+    },
+    {
+      "event_id": "sec-8k-0001045810-26-000073",
+      "ticker": "NVDA",
+      "company_name": "NVIDIA CORP",
+      "event_type": "earnings",
+      "headline": "NVIDIA CORP files 8-K (2.02, 9.01)",
+      "source": "SEC EDGAR submissions (8-K/8-K/A)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/nvda-20260826.htm",
+      "accession_number": "0001045810-26-000073",
+      "form_type": "8-K",
+      "published_at": "2026-08-26T20:21:19Z",
+      "filed_date": "2026-08-26",
+      "report_date": "2026-08-26",
+      "items": [
+        "2.02",
+        "9.01"
+      ],
+      "primary_document": "nvda-20260826.htm",
+      "summary": null
+    },
+    {
+      "event_id": "sec-8k-0001045810-26-000069",
+      "ticker": "NVDA",
+      "company_name": "NVIDIA CORP",
+      "event_type": "material_agreement",
+      "headline": "NVIDIA CORP files 8-K (1.01, 2.03, 7.01)",
+      "source": "SEC EDGAR submissions (8-K/8-K/A)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000069/nvda-20260817.htm",
+      "accession_number": "0001045810-26-000069",
+      "form_type": "8-K",
+      "published_at": "2026-08-17T12:41:33Z",
+      "filed_date": "2026-08-17",
+      "report_date": "2026-08-17",
+      "items": [
+        "1.01",
+        "2.03",
+        "7.01"
+      ],
+      "primary_document": "nvda-20260817.htm",
+      "summary": null
+    },
+    {
+      "event_id": "sec-8k-0000320193-26-000018",
+      "ticker": "AAPL",
+      "company_name": "Apple Inc.",
+      "event_type": "earnings",
+      "headline": "Apple Inc. files 8-K (2.02, 9.01)",
+      "source": "SEC EDGAR submissions (8-K/8-K/A)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000018/aapl-20260730.htm",
+      "accession_number": "0000320193-26-000018",
+      "form_type": "8-K",
+      "published_at": "2026-07-30T20:30:28Z",
+      "filed_date": "2026-07-30",
+      "report_date": "2026-07-30",
+      "items": [
+        "2.02",
+        "9.01"
+      ],
+      "primary_document": "aapl-20260730.htm",
+      "summary": null
+    },
+    {
+      "event_id": "sec-8k-0001193125-26-323632",
+      "ticker": "MSFT",
+      "company_name": "MICROSOFT CORP",
+      "event_type": "earnings",
+      "headline": "MICROSOFT CORP files 8-K (2.02, 9.01)",
+      "source": "SEC EDGAR submissions (8-K/8-K/A)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323632/msft-20260729.htm",
+      "accession_number": "0001193125-26-323632",
+      "form_type": "8-K",
+      "published_at": "2026-07-29T20:04:53Z",
+      "filed_date": "2026-07-29",
+      "report_date": "2026-07-29",
+      "items": [
+        "2.02",
+        "9.01"
+      ],
+      "primary_document": "msft-20260729.htm",
+      "summary": null
+    },
+    {
+      "event_id": "sec-8k-0001045810-26-000060",
+      "ticker": "NVDA",
+      "company_name": "NVIDIA CORP",
+      "event_type": "leadership",
+      "headline": "NVIDIA CORP files 8-K (5.02)",
+      "source": "SEC EDGAR submissions (8-K/8-K/A)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000060/nvda-20260628.htm",
+      "accession_number": "0001045810-26-000060",
+      "form_type": "8-K",
+      "published_at": "2026-07-02T13:23:16Z",
+      "filed_date": "2026-07-02",
+      "report_date": "2026-06-28",
+      "items": [
+        "5.02"
+      ],
+      "primary_document": "nvda-20260628.htm",
+      "summary": null
+    },
+    {
+      "event_id": "sec-8k-0001045810-26-000056",
+      "ticker": "NVDA",
+      "company_name": "NVIDIA CORP",
+      "event_type": "shareholder_vote",
+      "headline": "NVIDIA CORP files 8-K (5.07)",
+      "source": "SEC EDGAR submissions (8-K/8-K/A)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000056/nvda-20260624.htm",
+      "accession_number": "0001045810-26-000056",
+      "form_type": "8-K",
+      "published_at": "2026-06-30T20:27:26Z",
+      "filed_date": "2026-06-30",
+      "report_date": "2026-06-24",
+      "items": [
+        "5.07"
+      ],
+      "primary_document": "nvda-20260624.htm",
+      "summary": null
+    },
+    {
+      "event_id": "sec-8k-0001193125-26-275783",
+      "ticker": "NVDA",
+      "company_name": "NVIDIA CORP",
+      "event_type": "other_event",
+      "headline": "NVIDIA CORP files 8-K (8.01, 9.01)",
+      "source": "SEC EDGAR submissions (8-K/8-K/A)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000119312526275783/d48176d8k.htm",
+      "accession_number": "0001193125-26-275783",
+      "form_type": "8-K",
+      "published_at": "2026-06-18T20:00:24Z",
+      "filed_date": "2026-06-18",
+      "report_date": "2026-06-15",
+      "items": [
+        "8.01",
+        "9.01"
+      ],
+      "primary_document": "d48176d8k.htm",
+      "summary": null
+    },
+    {
+      "event_id": "sec-8k-0001193125-26-258667",
+      "ticker": "MSFT",
+      "company_name": "MICROSOFT CORP",
+      "event_type": "leadership",
+      "headline": "MICROSOFT CORP files 8-K (5.02)",
+      "source": "SEC EDGAR submissions (8-K/8-K/A)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526258667/d26760d8k.htm",
+      "accession_number": "0001193125-26-258667",
+      "form_type": "8-K",
+      "published_at": "2026-06-05T14:36:56Z",
+      "filed_date": "2026-06-05",
+      "report_date": "2026-06-02",
+      "items": [
+        "5.02"
+      ],
+      "primary_document": "d26760d8k.htm",
+      "summary": null
+    },
+    {
+      "event_id": "sec-8k-0001045810-26-000051",
+      "ticker": "NVDA",
+      "company_name": "NVIDIA CORP",
+      "event_type": "earnings",
+      "headline": "NVIDIA CORP files 8-K (2.02, 9.01)",
+      "source": "SEC EDGAR submissions (8-K/8-K/A)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000051/nvda-20260520.htm",
+      "accession_number": "0001045810-26-000051",
+      "form_type": "8-K",
+      "published_at": "2026-05-20T20:21:19Z",
+      "filed_date": "2026-05-20",
+      "report_date": "2026-05-20",
+      "items": [
+        "2.02",
+        "9.01"
+      ],
+      "primary_document": "nvda-20260520.htm",
+      "summary": null
+    },
+    {
+      "event_id": "sec-8k-0001193125-26-224155",
+      "ticker": "MSFT",
+      "company_name": "MICROSOFT CORP",
+      "event_type": "leadership",
+      "headline": "MICROSOFT CORP files 8-K (5.02, 9.01)",
+      "source": "SEC EDGAR submissions (8-K/8-K/A)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526224155/d125909d8k.htm",
+      "accession_number": "0001193125-26-224155",
+      "form_type": "8-K",
+      "published_at": "2026-05-14T20:28:48Z",
+      "filed_date": "2026-05-14",
+      "report_date": "2026-05-13",
+      "items": [
+        "5.02",
+        "9.01"
+      ],
+      "primary_document": "d125909d8k.htm",
+      "summary": null
+    },
+    {
+      "event_id": "sec-8k-0001045810-26-000028",
+      "ticker": "NVDA",
+      "company_name": "NVIDIA CORP",
+      "event_type": "leadership",
+      "headline": "NVIDIA CORP files 8-K (5.02)",
+      "source": "SEC EDGAR submissions (8-K/8-K/A)",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000028/nvda-20260507.htm",
+      "accession_number": "0001045810-26-000028",
+      "form_type": "8-K",
+      "published_at": "2026-05-08T20:35:07Z",
+      "filed_date": "2026-05-08",
+      "report_date": "2026-05-07",
+      "items": [
+        "5.02"
+      ],
+      "primary_document": "nvda-20260507.htm",
+      "summary": null
+    }
+  ]
+}

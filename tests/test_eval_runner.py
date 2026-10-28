@@ -25,6 +25,8 @@ class EvalRunnerTest(unittest.TestCase):
                 cwd=PROJECT_ROOT,
                 capture_output=True,
                 text=True,
+                encoding="utf-8",
+                errors="replace",
                 timeout=30,
             )
             self.assertEqual(result.returncode, 0, result.stderr)

@@ -11,6 +11,7 @@ from typing import Any
 
 SEC_TICKERS_URL = "https://www.sec.gov/files/company_tickers.json"
 SEC_COMPANYFACTS_URL = "https://data.sec.gov/api/xbrl/companyfacts/CIK{cik}.json"
+SEC_SUBMISSIONS_URL = "https://data.sec.gov/submissions/CIK{cik}.json"
 
 
 @dataclass(frozen=True)
@@ -48,6 +49,11 @@ class SecEdgarClient:
 
     def companyfacts(self, cik: str) -> dict[str, Any]:
         payload = self._get_json(SEC_COMPANYFACTS_URL.format(cik=cik))
+        time.sleep(0.2)
+        return payload
+
+    def submissions(self, cik: str) -> dict[str, Any]:
+        payload = self._get_json(SEC_SUBMISSIONS_URL.format(cik=cik))
         time.sleep(0.2)
         return payload
 

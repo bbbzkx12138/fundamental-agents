@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, datetime
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -105,6 +105,44 @@ class SummaryBatch(BaseModel):
     summaries: list[TickerLLMSummary]
 
 
+class ComplianceDecision(BaseModel):
+    """报告合规检查结果。"""
+
+    passed: bool
+    violations: list[str] = Field(default_factory=list)
+    warnings: list[str] = Field(default_factory=list)
+    rules_version: str = "1.0"
+    checked_at: str
+
+
+class NewsEvent(BaseModel):
+    """可追溯的新闻或重大事件记录。"""
+
+    event_id: str
+    ticker: str
+    company_name: str
+    event_type: str
+    headline: str
+    source: str
+    source_url: str
+    accession_number: str
+    form_type: str
+    published_at: datetime
+    filed_date: date
+    report_date: date | None = None
+    items: list[str] = Field(default_factory=list)
+    primary_document: str | None = None
+    summary: str | None = None
+
+
+class NewsCache(BaseModel):
+    """本地新闻事件缓存。"""
+
+    as_of: date
+    source: str
+    events: list[NewsEvent]
+
+
 class FundamentalBrief(BaseModel):
     """顶层结构化输出。"""
 
@@ -117,3 +155,4 @@ class FundamentalBrief(BaseModel):
     summaries: list[TickerLLMSummary] = Field(default_factory=list)
     summary_source: str | None = None
     llm_model: str | None = None
+    compliance: ComplianceDecision | None = None
