@@ -12,7 +12,7 @@ from .models import (
     TickerBrief,
 )
 from .observability import CostBudget, TraceRecorder, estimate_tokens
-from .verify import FORBIDDEN_ADVICE_TERMS
+from .verify import contains_advice_terms
 
 
 def build_summary_payload(brief: FundamentalBrief) -> dict[str, Any]:
@@ -200,5 +200,4 @@ def _ticker_payload(ticker: TickerBrief) -> dict[str, Any]:
 
 
 def _contains_advice(text: str) -> bool:
-    lowered = text.lower()
-    return any(term in lowered for term in FORBIDDEN_ADVICE_TERMS)
+    return bool(contains_advice_terms(text))

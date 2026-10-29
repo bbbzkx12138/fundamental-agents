@@ -12,7 +12,7 @@ from fundamental_agent.llm_summary import summarize_brief
 from fundamental_agent.models import CacheFile, SummaryBatch
 from fundamental_agent.observability import BudgetConfig, CostBudget
 from fundamental_agent.pipeline import build_brief
-from fundamental_agent.verify import verify_quarter_record
+from fundamental_agent.verify import contains_advice_terms, verify_quarter_record
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -82,6 +82,10 @@ class NegativeCaseTest(unittest.TestCase):
         self.assertEqual(len(updated.summaries), 3)
         self.assertTrue(any("预算检查未通过" in note for note in notes))
         self.assertFalse(snapshot["exceeded"])
+
+    def test_shareholder_is_not_flagged_as_hold_advice(self) -> None:
+        self.assertEqual(contains_advice_terms("shareholder vote event"), [])
+        self.assertTrue(contains_advice_terms("hold the stock"))
 
 
 if __name__ == "__main__":

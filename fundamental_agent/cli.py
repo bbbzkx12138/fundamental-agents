@@ -63,6 +63,12 @@ def parse_args() -> argparse.Namespace:
         help=f"本地缓存 JSON 路径。默认值：{DEFAULT_CACHE}",
     )
     parser.add_argument(
+        "--news-cache",
+        type=Path,
+        default=PROJECT_ROOT / "data" / "cache" / "news_events.sec.json",
+        help="SEC 8-K 新闻事件缓存路径。",
+    )
+    parser.add_argument(
         "--md-output",
         type=Path,
         default=PROJECT_ROOT / "sample_report.md",
@@ -135,6 +141,7 @@ def main() -> int:
                 llm_mode=args.llm_mode,
                 run_id=thread_id,
                 trace_recorder=trace,
+                news_cache_path=args.news_cache,
             )
             if args.approve or args.reject:
                 state = graph.invoke(

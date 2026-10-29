@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from collections import defaultdict
 
 from .metrics import debt_to_asset_pct, free_cash_flow_usd, gross_margin_pct
@@ -18,21 +19,13 @@ REQUIRED_METRICS = {
     "debt_to_asset_ratio",
 }
 
-FORBIDDEN_ADVICE_TERMS = {
-    "buy",
-    "sell",
-    "hold",
-    "target price",
-    "recommend",
-    "overweight",
-    "underweight",
-    "买入",
-    "卖出",
-    "持有",
-    "目标价",
-    "建仓",
-    "清仓",
-}
+ADVICE_PATTERNS = (
+    (re.compile(r"\b(?:buy|sell|hold)\b", re.IGNORECASE), "建议方向词"),
+    (re.compile(r"\b(?:overweight|underweight)\b", re.IGNORECASE), "评级词"),
+    (re.compile(r"\btarget\s+price\b", re.IGNORECASE), "目标价"),
+    (re.compile(r"\brecommend(?:ation|ed)?\b", re.IGNORECASE), "推荐词"),
+    (re.compile(r"买入|卖出|持有|目标价|建仓|清仓"), "中文交易建议词"),
+)
 
 
 def verify_quarter_record(ticker: str, record: QuarterRecord) -> list[str]:
@@ -111,6 +104,16 @@ def verify_ticker_brief(brief: TickerBrief) -> list[str]:
 
 def verify_no_trading_advice(markdown: str) -> None:
     body = markdown.split("## 免责声明", maxsplit=1)[0].lower()
-    found = sorted(term for term in FORBIDDEN_ADVICE_TERMS if term in body)
+    found = contains_advice_terms(body)
     if found:
         raise ValueError(f"possible trading advice terms found: {found}")
+
+
+def contains_advice_terms(text: str) -> list[str]:
+    """返回匹配到的交易建议规则标签，避免 shareholder 等词误报。"""
+
+    return [
+        label
+        for pattern, label in ADVICE_PATTERNS
+        if pattern.search(text)
+    ]

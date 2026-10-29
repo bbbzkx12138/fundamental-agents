@@ -10,6 +10,7 @@ services:
       API_CHECKPOINT_DB: /app/data/checkpoints.api.sqlite
       API_TRACE_DIR: /app/data/traces
       API_REPORT_DIR: /app/data/reports
+      API_NEWS_CACHE_PATH: /app/data/cache/news_events.sec.json
     volumes:
       - ./data:/app/data
     restart: unless-stopped

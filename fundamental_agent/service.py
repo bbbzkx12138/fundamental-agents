@@ -6,7 +6,7 @@ import json
 import os
 import re
 import threading
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 from uuid import uuid4
@@ -34,6 +34,9 @@ class ApiSettings:
     checkpoint_db: Path
     trace_dir: Path
     report_dir: Path
+    news_cache_path: Path = field(
+        default_factory=lambda: PROJECT_ROOT / "data" / "cache" / "news_events.sec.json"
+    )
     default_llm_mode: str = "auto"
     auth_token: str = ""
     require_auth: bool = True
@@ -56,6 +59,10 @@ class ApiSettings:
             report_dir=_path_from_env(
                 "API_REPORT_DIR",
                 PROJECT_ROOT / "data" / "reports",
+            ),
+            news_cache_path=_path_from_env(
+                "API_NEWS_CACHE_PATH",
+                PROJECT_ROOT / "data" / "cache" / "news_events.sec.json",
             ),
             default_llm_mode="auto",
             auth_token=os.getenv("API_AUTH_TOKEN", ""),
@@ -224,6 +231,7 @@ class RunService:
             progress=False,
             run_id=thread_id,
             trace_recorder=trace,
+            news_cache_path=self.settings.news_cache_path,
         )
 
     def _saver(self):

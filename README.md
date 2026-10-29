@@ -361,7 +361,8 @@ data/cache/news_events.sec.json
 - 按 accession number 去重
 - 校验 SEC URL、发布时间、filing 日期和 ticker
 
-当前只完成数据层和缓存，News Agent 还没有接入报告生成。
+News Agent 已接入 LangGraph 和报告，当前使用确定性事件摘要。
+新闻只作为独立事件信息展示，不会修改财务指标。LLM 新闻解释将在后续版本加入。
 
 ## 测试
 
@@ -378,11 +379,12 @@ LangGraph 节点：
 3. `supervisor`
 4. `compute_metrics`
 5. `verify_metrics`
-6. `llm_summary`
-7. `compliance`
-8. `render_report`
-9. `human_approval`
-10. `safety_check`
+6. `news`
+7. `llm_summary`
+8. `compliance`
+9. `render_report`
+10. `human_approval`
+11. `safety_check`
 
 默认执行引擎是 [langgraph_pipeline.py](fundamental_agent/langgraph_pipeline.py)。
 它使用 SQLite checkpointer，支持暂停、恢复和审批拒绝。
@@ -391,7 +393,7 @@ LangGraph 节点：
 
 ```text
 load_cache -> validate_cache -> supervisor -> compute_metrics
-  -> verify_metrics -> llm_summary -> compliance -> render_report -> human_approval
+  -> verify_metrics -> news -> llm_summary -> compliance -> render_report -> human_approval
   -> safety_check（批准）
   -> END（拒绝）
 ```

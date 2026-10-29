@@ -2,7 +2,13 @@
 
 from __future__ import annotations
 
-from .models import FundamentalBrief, MetricPoint, TickerBrief, TickerLLMSummary
+from .models import (
+    FundamentalBrief,
+    MetricPoint,
+    NewsBrief,
+    TickerBrief,
+    TickerLLMSummary,
+)
 
 
 def render_markdown(brief: FundamentalBrief) -> str:
@@ -28,6 +34,10 @@ def render_markdown(brief: FundamentalBrief) -> str:
     summaries = {summary.ticker: summary for summary in brief.summaries}
     for ticker in brief.tickers:
         lines.extend(_render_ticker(ticker, summaries.get(ticker.ticker)))
+        lines.append("")
+
+    if brief.news is not None:
+        lines.extend(_render_news(brief.news))
         lines.append("")
 
     if brief.compliance is not None:
@@ -174,6 +184,45 @@ def _render_ticker(
 
 def _metric_lookup(points: list[MetricPoint]) -> dict[tuple[str, str], MetricPoint]:
     return {(point.period, point.metric): point for point in points}
+
+
+def _render_news(news: NewsBrief) -> list[str]:
+    lines = [
+        "## 近期重大事件",
+        "",
+        f"- 数据来源：{news.source}",
+        f"- 数据截止：{news.as_of.isoformat()}",
+        "",
+    ]
+    for summary in news.summaries:
+        lines.extend(
+            [
+                f"### {summary.ticker}",
+                "",
+                summary.summary,
+                "",
+            ]
+        )
+        if summary.warnings:
+            lines.extend(f"- 注意：{warning}" for warning in summary.warnings)
+            lines.append("")
+        ticker_events = [
+            event for event in news.events if event.ticker == summary.ticker
+        ]
+        if ticker_events:
+            lines.extend(
+                [
+                    "| 日期 | 类型 | 标题 | 来源 |",
+                    "|---|---|---|---|",
+                ]
+            )
+            for event in ticker_events:
+                lines.append(
+                    f"| {event.filed_date.isoformat()} | {event.event_type} | "
+                    f"{event.headline} | [SEC]({event.source_url}) |"
+                )
+        lines.append("")
+    return lines
 
 
 def _fmt_usd_bn(value: float | None) -> str:

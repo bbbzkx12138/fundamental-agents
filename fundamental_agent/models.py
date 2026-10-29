@@ -143,6 +143,27 @@ class NewsCache(BaseModel):
     events: list[NewsEvent]
 
 
+class TickerNewsSummary(BaseModel):
+    """单只股票的结构化近期事件摘要。"""
+
+    ticker: str
+    event_count: int
+    summary: str
+    event_ids: list[str] = Field(default_factory=list)
+    warnings: list[str] = Field(default_factory=list)
+
+
+class NewsBrief(BaseModel):
+    """新闻事件的验证后摘要。"""
+
+    as_of: date
+    source: str
+    events: list[NewsEvent]
+    summaries: list[TickerNewsSummary]
+    verification_notes: list[str] = Field(default_factory=list)
+    summary_source: str = "deterministic_news"
+
+
 class FundamentalBrief(BaseModel):
     """顶层结构化输出。"""
 
@@ -156,3 +177,4 @@ class FundamentalBrief(BaseModel):
     summary_source: str | None = None
     llm_model: str | None = None
     compliance: ComplianceDecision | None = None
+    news: NewsBrief | None = None

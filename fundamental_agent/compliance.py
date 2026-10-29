@@ -6,17 +6,10 @@ import re
 from datetime import datetime
 
 from .models import ComplianceDecision, FundamentalBrief
+from .verify import contains_advice_terms
 
 
 RULES_VERSION = "1.0"
-
-ADVICE_PATTERNS = (
-    re.compile(r"\b(?:buy|sell|hold)\b", re.IGNORECASE),
-    re.compile(r"\b(?:overweight|underweight)\b", re.IGNORECASE),
-    re.compile(r"\btarget\s+price\b", re.IGNORECASE),
-    re.compile(r"\brecommend(?:ation|ed)?\b", re.IGNORECASE),
-    re.compile(r"买入|卖出|持有|目标价|建仓|清仓|强力推荐"),
-)
 
 GUARANTEE_PATTERNS = (
     re.compile(r"保证收益|稳赚|必涨|必然上涨|一定上涨|无风险收益"),
@@ -49,9 +42,7 @@ def evaluate_compliance(
             for observation in summary.observations
         ]
     )
-    if _matches_any(ADVICE_PATTERNS, markdown_body) or _matches_any(
-        ADVICE_PATTERNS, narrative
-    ):
+    if contains_advice_terms(markdown_body) or contains_advice_terms(narrative):
         violations.append("报告包含买入、卖出、持有或目标价类表述")
 
     if _matches_any(GUARANTEE_PATTERNS, markdown_body) or _matches_any(
@@ -90,6 +81,20 @@ def evaluate_compliance(
                 violations.append(
                     f"{ticker.ticker} {record.period}: filed_date 早于 period_end_date"
                 )
+
+    if brief.news is not None:
+        known_event_ids = {event.event_id for event in brief.news.events}
+        for event in brief.news.events:
+            if not event.accession_number or not event.source_url.startswith(
+                "https://www.sec.gov/"
+            ):
+                violations.append(f"{event.event_id}: 新闻来源不可追溯")
+        for summary in brief.news.summaries:
+            for event_id in summary.event_ids:
+                if event_id not in known_event_ids:
+                    violations.append(
+                        f"{summary.ticker}: 新闻摘要引用未知事件 {event_id}"
+                    )
 
     if brief.summary_source == "template":
         warnings.append("当前摘要来自确定性模板，不是模型生成")

@@ -17,6 +17,8 @@ from .data_loader import load_cache, select_tickers
 from .llm_provider import get_summary_provider
 from .llm_summary import summarize_brief
 from .models import CacheFile, CompanyRecords, FundamentalBrief
+from .news_agent import build_news_brief
+from .news_loader import load_news_cache
 from .observability import CostBudget, TraceRecorder
 from .pipeline import assemble_brief
 from .report import render_markdown
@@ -42,6 +44,7 @@ class PipelineState(TypedDict, total=False):
     llm_model: str | None
     budget_snapshot: dict[str, Any]
     compliance: dict[str, Any]
+    news: dict[str, Any]
     approved: bool
     approval_comment: str
 
@@ -57,6 +60,7 @@ def build_langgraph(
     run_id: str | None = None,
     trace_recorder: TraceRecorder | None = None,
     budget: CostBudget | None = None,
+    news_cache_path: Path | None = None,
 ):
     """构建带人工审批中断点的 LangGraph 状态图。"""
 
@@ -68,6 +72,9 @@ def build_langgraph(
         enabled=trace_enabled,
     )
     budget = budget or CostBudget()
+    news_cache_path = news_cache_path or (
+        PROJECT_ROOT / "data" / "cache" / "news_events.sec.json"
+    )
 
     def log_progress(message: str) -> None:
         if progress:
@@ -130,6 +137,35 @@ def build_langgraph(
         brief = brief.model_copy(update={"verification_notes": notes})
         return {
             "brief": brief.model_dump(mode="json"),
+            "verification_notes": notes,
+        }
+
+    def news_node(state: PipelineState) -> dict[str, Any]:
+        log_progress("正在加载并校验新闻事件...")
+        brief = FundamentalBrief.model_validate(state["brief"])
+        notes = list(state["verification_notes"])
+        news_brief = None
+        try:
+            news_cache = load_news_cache(news_cache_path)
+            news_brief = build_news_brief(
+                news_cache,
+                state["requested_tickers"],
+            )
+            notes.extend(news_brief.verification_notes)
+        except Exception as exc:
+            notes.append(
+                "新闻事件已跳过："
+                f"{type(exc).__name__}: {str(exc)[:240]}"
+            )
+        brief = brief.model_copy(
+            update={
+                "news": news_brief,
+                "verification_notes": notes,
+            }
+        )
+        return {
+            "brief": brief.model_dump(mode="json"),
+            "news": news_brief.model_dump(mode="json") if news_brief else {},
             "verification_notes": notes,
         }
 
@@ -258,6 +294,7 @@ def build_langgraph(
     graph.add_node("supervisor", traced("supervisor", supervisor_node))
     graph.add_node("compute_metrics", traced("compute_metrics", compute_metrics_node))
     graph.add_node("verify_metrics", traced("verify_metrics", verify_metrics_node))
+    graph.add_node("news", traced("news", news_node))
     graph.add_node("llm_summary", traced("llm_summary", llm_summary_node))
     graph.add_node("compliance", traced("compliance", compliance_node))
     graph.add_node("render_report", traced("render_report", render_report_node))
@@ -269,7 +306,8 @@ def build_langgraph(
     graph.add_edge("validate_cache", "supervisor")
     graph.add_edge("supervisor", "compute_metrics")
     graph.add_edge("compute_metrics", "verify_metrics")
-    graph.add_edge("verify_metrics", "llm_summary")
+    graph.add_edge("verify_metrics", "news")
+    graph.add_edge("news", "llm_summary")
     graph.add_edge("llm_summary", "compliance")
     graph.add_conditional_edges(
         "compliance",
