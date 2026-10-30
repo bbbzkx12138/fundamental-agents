@@ -1,11 +1,11 @@
 # 美股基本面简报
 
-- 生成时间：2026-10-26T13:16:13+08:00
+- 生成时间：2026-10-30T12:38:01+08:00
 - 数据截止：2026-10-12
 - 缓存来源：SEC EDGAR companyfacts via data.sec.gov; point-in-time cutoff 2026-10-12
 - 数据范围：每只股票最近 4 个季度
 - 增速口径：环比 QoQ，因为本地缓存只有 4 个季度
-- 摘要来源：openai-compatible
+- 摘要来源：template
 
 > 数据来源：SEC EDGAR companyfacts。
 > 单季数据优先使用原始 filing；缺失的单季值由 SEC 累计值差分推导。
@@ -33,17 +33,18 @@
 
 ### 摘要与解释
 
-Apple FY2026-Q3收入环比略降，净利润环比微增，毛利率上升，自由现金流为正，资产负债率仍较高。
+AAPL 最新季度 FY2026-Q3 营收为 109.42B USD，环比 -1.59%；净利润为 29.79B USD，环比 0.71%；毛利率为 50.06%，自由现金流为 31.91B USD，资产负债率为 71.95%。
 
 重点观察：
 
-- FY2026-Q3收入环比小幅下降，净利润环比微增。（依据：FY2026-Q3/revenue_growth_qoq；FY2026-Q3/net_income_growth_qoq）
-- FY2026-Q3自由现金流为正，资产负债率处于较高水平。（依据：FY2026-Q3/free_cash_flow；FY2026-Q3/debt_to_asset_ratio）
+- FY2026-Q3 营收为 109.42B USD，环比 -1.59%。（依据：FY2026-Q3/revenue；FY2026-Q3/revenue_growth_qoq）
+- FY2026-Q3 净利润为 29.79B USD，环比 0.71%。（依据：FY2026-Q3/net_income；FY2026-Q3/net_income_growth_qoq）
+- FY2026-Q3 毛利率为 50.06%，自由现金流为 31.91B USD，资产负债率为 71.95%。（依据：FY2026-Q3/gross_margin；FY2026-Q3/free_cash_flow；FY2026-Q3/debt_to_asset_ratio）
 
 不确定性：
 
-- 缺少同比数据，无法判断长期趋势。
-- 缺少分部收入、指引与资本开支明细。
+- 单季度环比可能受到季节性和一次性项目影响。
+- 本摘要仅基于本地 SEC 缓存，不包含新闻、行情或未来预测。
 
 
 ## MSFT - MICROSOFT CORPORATION
@@ -68,17 +69,18 @@ Apple FY2026-Q3收入环比略降，净利润环比微增，毛利率上升，�
 
 ### 摘要与解释
 
-Microsoft FY2026-Q4收入与净利润环比增长，毛利率较高，自由现金流为正，资产负债率较低。
+MSFT 最新季度 FY2026-Q4 营收为 90.01B USD，环比 8.59%；净利润为 35.77B USD，环比 12.55%；毛利率为 67.20%，自由现金流为 19.64B USD，资产负债率为 41.67%。
 
 重点观察：
 
-- FY2026-Q4收入环比增长，净利润环比增长。（依据：FY2026-Q4/revenue_growth_qoq；FY2026-Q4/net_income_growth_qoq）
-- FY2026-Q4自由现金流为正，资产负债率处于较低水平。（依据：FY2026-Q4/free_cash_flow；FY2026-Q4/debt_to_asset_ratio）
+- FY2026-Q4 营收为 90.01B USD，环比 8.59%。（依据：FY2026-Q4/revenue；FY2026-Q4/revenue_growth_qoq）
+- FY2026-Q4 净利润为 35.77B USD，环比 12.55%。（依据：FY2026-Q4/net_income；FY2026-Q4/net_income_growth_qoq）
+- FY2026-Q4 毛利率为 67.20%，自由现金流为 19.64B USD，资产负债率为 41.67%。（依据：FY2026-Q4/gross_margin；FY2026-Q4/free_cash_flow；FY2026-Q4/debt_to_asset_ratio）
 
 不确定性：
 
-- 缺少同比数据，无法判断年度增长质量。
-- 缺少云、AI等分部收入与费用明细。
+- 单季度环比可能受到季节性和一次性项目影响。
+- 本摘要仅基于本地 SEC 缓存，不包含新闻、行情或未来预测。
 
 
 ## NVDA - NVIDIA CORP
@@ -103,18 +105,106 @@ Microsoft FY2026-Q4收入与净利润环比增长，毛利率较高，自由现�
 
 ### 摘要与解释
 
-NVIDIA FY2027-Q2收入与净利润环比增长，毛利率较高，自由现金流为正，资产负债率较上季上升。
+NVDA 最新季度 FY2027-Q2 营收为 96.22B USD，环比 17.90%；净利润为 59.69B USD，环比 2.34%；毛利率为 74.98%，自由现金流为 21.40B USD，资产负债率为 28.50%。
 
 重点观察：
 
-- FY2027-Q2收入环比增长，净利润环比增长。（依据：FY2027-Q2/revenue_growth_qoq；FY2027-Q2/net_income_growth_qoq）
-- FY2027-Q2毛利率保持高位，自由现金流为正。（依据：FY2027-Q2/gross_margin；FY2027-Q2/free_cash_flow）
+- FY2027-Q2 营收为 96.22B USD，环比 17.90%。（依据：FY2027-Q2/revenue；FY2027-Q2/revenue_growth_qoq）
+- FY2027-Q2 净利润为 59.69B USD，环比 2.34%。（依据：FY2027-Q2/net_income；FY2027-Q2/net_income_growth_qoq）
+- FY2027-Q2 毛利率为 74.98%，自由现金流为 21.40B USD，资产负债率为 28.50%。（依据：FY2027-Q2/gross_margin；FY2027-Q2/free_cash_flow；FY2027-Q2/debt_to_asset_ratio）
 
 不确定性：
 
-- 缺少同比数据，无法判断增长持续性。
-- 缺少客户集中度、供应与需求指引。
+- 单季度环比可能受到季节性和一次性项目影响。
+- 本摘要仅基于本地 SEC 缓存，不包含新闻、行情或未来预测。
 
+
+## 近期重大事件
+
+- 数据来源：SEC EDGAR submissions (8-K/8-K/A); point-in-time cutoff 2026-10-28
+- 数据截止：2026-10-28
+- 事件解释来源：deterministic_news
+
+### AAPL
+
+AAPL 最近 180 天内共有 2 条 SEC 8-K 事件，类型分布为 amendment 1 条、earnings 1 条。最近一条为 Apple Inc. files 8-K/A (5.02)，提交日期为 2026-09-01。
+
+事件解读：
+
+AAPL 最近 180 天内共有 2 条 SEC 8-K 事件，类型分布为 amendment 1 条、earnings 1 条。最近一条为 Apple Inc. files 8-K/A (5.02)，提交日期为 2026-09-01。
+
+- 2026-09-01 提交的 8-K/A 事件类型为 amendment。（event_id：sec-8k-0001140361-26-035325）
+- 2026-07-30 提交的 8-K 事件类型为 earnings。（event_id：sec-8k-0000320193-26-000018）
+
+- 不确定性：当前解释只基于 SEC 8-K，不包含媒体新闻或市场传闻。
+- 不确定性：事件解释不构成对公司未来业绩的预测。
+
+- 注意：本摘要只使用 SEC 8-K，不包含通用新闻或市场传言。
+
+| 日期 | 类型 | 标题 | 来源 |
+|---|---|---|---|
+| 2026-09-01 | amendment | Apple Inc. files 8-K/A (5.02) | [SEC](https://www.sec.gov/Archives/edgar/data/320193/000114036126035325/ef20081427_8ka.htm) |
+| 2026-07-30 | earnings | Apple Inc. files 8-K (2.02, 9.01) | [SEC](https://www.sec.gov/Archives/edgar/data/320193/000032019326000018/aapl-20260730.htm) |
+
+### MSFT
+
+MSFT 最近 180 天内共有 4 条 SEC 8-K 事件，类型分布为 leadership 2 条、regulation_fd 1 条、earnings 1 条。最近一条为 MICROSOFT CORP files 8-K (7.01, 9.01)，提交日期为 2026-09-02。
+
+事件解读：
+
+MSFT 最近 180 天内共有 4 条 SEC 8-K 事件，类型分布为 leadership 2 条、regulation_fd 1 条、earnings 1 条。最近一条为 MICROSOFT CORP files 8-K (7.01, 9.01)，提交日期为 2026-09-02。
+
+- 2026-09-02 提交的 8-K 事件类型为 regulation_fd。（event_id：sec-8k-0001193125-26-380280）
+- 2026-07-29 提交的 8-K 事件类型为 earnings。（event_id：sec-8k-0001193125-26-323632）
+
+- 不确定性：当前解释只基于 SEC 8-K，不包含媒体新闻或市场传闻。
+- 不确定性：事件解释不构成对公司未来业绩的预测。
+
+- 注意：本摘要只使用 SEC 8-K，不包含通用新闻或市场传言。
+
+| 日期 | 类型 | 标题 | 来源 |
+|---|---|---|---|
+| 2026-09-02 | regulation_fd | MICROSOFT CORP files 8-K (7.01, 9.01) | [SEC](https://www.sec.gov/Archives/edgar/data/789019/000119312526380280/d291965d8k.htm) |
+| 2026-07-29 | earnings | MICROSOFT CORP files 8-K (2.02, 9.01) | [SEC](https://www.sec.gov/Archives/edgar/data/789019/000119312526323632/msft-20260729.htm) |
+| 2026-06-05 | leadership | MICROSOFT CORP files 8-K (5.02) | [SEC](https://www.sec.gov/Archives/edgar/data/789019/000119312526258667/d26760d8k.htm) |
+| 2026-05-14 | leadership | MICROSOFT CORP files 8-K (5.02, 9.01) | [SEC](https://www.sec.gov/Archives/edgar/data/789019/000119312526224155/d125909d8k.htm) |
+
+### NVDA
+
+NVDA 最近 180 天内共有 8 条 SEC 8-K 事件，类型分布为 other_event 2 条、earnings 2 条、leadership 2 条、material_agreement 1 条、shareholder_vote 1 条。最近一条为 NVIDIA CORP files 8-K (8.01)，提交日期为 2026-09-03。
+
+事件解读：
+
+NVDA 最近 180 天内共有 8 条 SEC 8-K 事件，类型分布为 other_event 2 条、earnings 2 条、leadership 2 条、material_agreement 1 条、shareholder_vote 1 条。最近一条为 NVIDIA CORP files 8-K (8.01)，提交日期为 2026-09-03。
+
+- 2026-09-03 提交的 8-K 事件类型为 other_event。（event_id：sec-8k-0001045810-26-000078）
+- 2026-08-26 提交的 8-K 事件类型为 earnings。（event_id：sec-8k-0001045810-26-000073）
+
+- 不确定性：当前解释只基于 SEC 8-K，不包含媒体新闻或市场传闻。
+- 不确定性：事件解释不构成对公司未来业绩的预测。
+
+- 注意：本摘要只使用 SEC 8-K，不包含通用新闻或市场传言。
+
+| 日期 | 类型 | 标题 | 来源 |
+|---|---|---|---|
+| 2026-09-03 | other_event | NVIDIA CORP files 8-K (8.01) | [SEC](https://www.sec.gov/Archives/edgar/data/1045810/000104581026000078/nvda-20260902.htm) |
+| 2026-08-26 | earnings | NVIDIA CORP files 8-K (2.02, 9.01) | [SEC](https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/nvda-20260826.htm) |
+| 2026-08-17 | material_agreement | NVIDIA CORP files 8-K (1.01, 2.03, 7.01) | [SEC](https://www.sec.gov/Archives/edgar/data/1045810/000104581026000069/nvda-20260817.htm) |
+| 2026-07-02 | leadership | NVIDIA CORP files 8-K (5.02) | [SEC](https://www.sec.gov/Archives/edgar/data/1045810/000104581026000060/nvda-20260628.htm) |
+| 2026-06-30 | shareholder_vote | NVIDIA CORP files 8-K (5.07) | [SEC](https://www.sec.gov/Archives/edgar/data/1045810/000104581026000056/nvda-20260624.htm) |
+| 2026-06-18 | other_event | NVIDIA CORP files 8-K (8.01, 9.01) | [SEC](https://www.sec.gov/Archives/edgar/data/1045810/000119312526275783/d48176d8k.htm) |
+| 2026-05-20 | earnings | NVIDIA CORP files 8-K (2.02, 9.01) | [SEC](https://www.sec.gov/Archives/edgar/data/1045810/000104581026000051/nvda-20260520.htm) |
+| 2026-05-08 | leadership | NVIDIA CORP files 8-K (5.02) | [SEC](https://www.sec.gov/Archives/edgar/data/1045810/000104581026000028/nvda-20260507.htm) |
+
+
+## 合规检查
+
+- 结果：通过
+- 规则版本：1.0
+- 检查时间：2026-10-30T12:38:01+08:00
+
+警告：
+- 当前摘要来自确定性模板，不是模型生成
 
 ## 校验记录
 
@@ -135,7 +225,12 @@ NVIDIA FY2027-Q2收入与净利润环比增长，毛利率较高，自由现金�
 - NVDA FY2027-Q2: record and source validated
 - NVDA: 4 periods, 28 metric points verified
 - 所有必需指标均通过确定性重算校验。
-- 摘要来源：openai-compatible。
+- AAPL: 通过校验的 8-K 事件 2 条
+- MSFT: 通过校验的 8-K 事件 4 条
+- NVDA: 通过校验的 8-K 事件 8 条
+- 新闻解释来源：deterministic_news。
+- 摘要来源：template。
+- 合规检查通过。
 - 人工审批已通过。
 - 报告正文未检测到交易建议表述。
 

@@ -87,6 +87,9 @@ LLM_MODEL=
 LLM_BASE_URL=https://api.openai.com/v1
 LLM_MAX_TOKENS=4000
 LLM_TIMEOUT_SECONDS=180
+NEWS_LLM_MAX_TOKENS=2000
+NEWS_LLM_TIMEOUT_SECONDS=180
+NEWS_LLM_TOKEN_BUDGET=4000
 
 SEC_USER_AGENT=fundamental-agent-demo/0.1 research contact@example.com
 ```
@@ -96,6 +99,8 @@ SEC_USER_AGENT=fundamental-agent-demo/0.1 research contact@example.com
 - `LLM_MODE=template`：强制使用模板。
 - `LLM_MAX_TOKENS`：单次摘要最大输出 token，默认 4000。
 - `LLM_TIMEOUT_SECONDS`：模型请求超时时间，默认 180 秒。
+- `NEWS_LLM_MAX_TOKENS`：新闻解释最大输出 token。
+- `NEWS_LLM_TOKEN_BUDGET`：新闻解释独立 token 预算。
 - `SEC_USER_AGENT`：SEC 要求的可识别 User-Agent。
 
 程序启动时会通过 `python-dotenv` 自动加载项目根目录 `.env`。
@@ -361,8 +366,34 @@ data/cache/news_events.sec.json
 - 按 accession number 去重
 - 校验 SEC URL、发布时间、filing 日期和 ticker
 
-News Agent 已接入 LangGraph 和报告，当前使用确定性事件摘要。
-新闻只作为独立事件信息展示，不会修改财务指标。LLM 新闻解释将在后续版本加入。
+News Agent 已接入 LangGraph 和报告，包含：
+
+- 确定性 NewsEvent 摘要
+- LLM 新闻事件解释
+- LLM 失败时回退到确定性摘要
+
+新闻只作为独立事件信息展示，不会修改财务指标。
+
+### News LLM 解释
+
+`news_llm` 节点只接收已经验证的 NewsEvent，输出结构化解释：
+
+```json
+{
+  "ticker": "AAPL",
+  "summary": "...",
+  "insights": [
+    {
+      "text": "...",
+      "event_ids": ["sec-8k-..."]
+    }
+  ],
+  "uncertainties": ["..."]
+}
+```
+
+每条 insight 必须引用真实存在的 event_id。若 API 失败、返回非法 JSON、引用错误事件或超出
+`NEWS_LLM_TOKEN_BUDGET`，会自动回退到 `deterministic_news` 摘要。
 
 ## 测试
 
@@ -380,11 +411,12 @@ LangGraph 节点：
 4. `compute_metrics`
 5. `verify_metrics`
 6. `news`
-7. `llm_summary`
-8. `compliance`
-9. `render_report`
-10. `human_approval`
-11. `safety_check`
+7. `news_llm`
+8. `llm_summary`
+9. `compliance`
+10. `render_report`
+11. `human_approval`
+12. `safety_check`
 
 默认执行引擎是 [langgraph_pipeline.py](fundamental_agent/langgraph_pipeline.py)。
 它使用 SQLite checkpointer，支持暂停、恢复和审批拒绝。
@@ -393,7 +425,8 @@ LangGraph 节点：
 
 ```text
 load_cache -> validate_cache -> supervisor -> compute_metrics
-  -> verify_metrics -> news -> llm_summary -> compliance -> render_report -> human_approval
+  -> verify_metrics -> news -> news_llm -> llm_summary -> compliance
+  -> render_report -> human_approval
   -> safety_check（批准）
   -> END（拒绝）
 ```

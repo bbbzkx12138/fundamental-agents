@@ -37,6 +37,16 @@ class SummaryResult:
     usage_source: str = "none"
 
 
+@dataclass(frozen=True)
+class JsonChatResult:
+    """通用 JSON Chat Completion 返回。"""
+
+    content: str
+    input_tokens: int | None
+    output_tokens: int | None
+    usage_source: str
+
+
 class TemplateSummaryProvider:
     """不调用模型的确定性摘要，用于无 Key 或 API 失败时的降级。"""
 
@@ -155,6 +165,29 @@ class OpenAICompatibleProvider:
             '"observations":[{"text":"...","evidence":[{"period":"...","metric":"..."}]}],'
             '"uncertainties":["..."]}]}'
         )
+        response = self.complete_json(
+            system_prompt=system_prompt,
+            payload=payload,
+            max_tokens=self.max_tokens,
+        )
+        return SummaryResult(
+            batch=SummaryBatch.model_validate_json(response.content),
+            provider=self.name,
+            model=self.model,
+            input_tokens=response.input_tokens,
+            output_tokens=response.output_tokens,
+            usage_source=response.usage_source,
+        )
+
+    def complete_json(
+        self,
+        *,
+        system_prompt: str,
+        payload: dict[str, Any],
+        max_tokens: int | None = None,
+    ) -> JsonChatResult:
+        """调用兼容接口并返回原始 JSON 文本和 usage。"""
+
         request_body = {
             "model": self.model,
             "messages": [
@@ -165,7 +198,7 @@ class OpenAICompatibleProvider:
                 },
             ],
             "temperature": 0.2,
-            "max_tokens": self.max_tokens,
+            "max_tokens": max_tokens or self.max_tokens,
             "response_format": {"type": "json_object"},
         }
         request = urllib.request.Request(
@@ -191,10 +224,8 @@ class OpenAICompatibleProvider:
         input_tokens = usage.get("prompt_tokens") or usage.get("input_tokens")
         output_tokens = usage.get("completion_tokens") or usage.get("output_tokens")
         usage_source = "reported" if input_tokens is not None or output_tokens is not None else "missing"
-        return SummaryResult(
-            batch=SummaryBatch.model_validate_json(content),
-            provider=self.name,
-            model=self.model,
+        return JsonChatResult(
+            content=content,
             input_tokens=input_tokens,
             output_tokens=output_tokens,
             usage_source=usage_source,

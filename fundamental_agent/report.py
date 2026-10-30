@@ -192,9 +192,12 @@ def _render_news(news: NewsBrief) -> list[str]:
         "",
         f"- 数据来源：{news.source}",
         f"- 数据截止：{news.as_of.isoformat()}",
+        f"- 事件解释来源：{news.explanation_source}",
         "",
     ]
+    explanations = {item.ticker: item for item in news.explanations}
     for summary in news.summaries:
+        explanation = explanations.get(summary.ticker)
         lines.extend(
             [
                 f"### {summary.ticker}",
@@ -203,6 +206,25 @@ def _render_news(news: NewsBrief) -> list[str]:
                 "",
             ]
         )
+        if explanation is not None:
+            lines.extend(
+                [
+                    "事件解读：",
+                    "",
+                    explanation.summary,
+                    "",
+                ]
+            )
+            if explanation.insights:
+                for insight in explanation.insights:
+                    lines.append(
+                        f"- {insight.text}（event_id："
+                        f"{'、'.join(insight.event_ids)}）"
+                    )
+                lines.append("")
+            if explanation.uncertainties:
+                lines.extend(f"- 不确定性：{item}" for item in explanation.uncertainties)
+                lines.append("")
         if summary.warnings:
             lines.extend(f"- 注意：{warning}" for warning in summary.warnings)
             lines.append("")

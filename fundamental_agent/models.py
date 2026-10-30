@@ -153,6 +153,28 @@ class TickerNewsSummary(BaseModel):
     warnings: list[str] = Field(default_factory=list)
 
 
+class NewsInsight(BaseModel):
+    """带 event_id 证据的新闻解释。"""
+
+    text: str
+    event_ids: list[str] = Field(min_length=1)
+
+
+class TickerNewsExplanation(BaseModel):
+    """单只股票的 LLM 新闻解释。"""
+
+    ticker: str
+    summary: str
+    insights: list[NewsInsight] = Field(default_factory=list)
+    uncertainties: list[str] = Field(default_factory=list)
+
+
+class NewsExplanationBatch(BaseModel):
+    """新闻解释 Provider 的统一返回结构。"""
+
+    explanations: list[TickerNewsExplanation]
+
+
 class NewsBrief(BaseModel):
     """新闻事件的验证后摘要。"""
 
@@ -162,6 +184,9 @@ class NewsBrief(BaseModel):
     summaries: list[TickerNewsSummary]
     verification_notes: list[str] = Field(default_factory=list)
     summary_source: str = "deterministic_news"
+    explanations: list[TickerNewsExplanation] = Field(default_factory=list)
+    explanation_source: str = "deterministic_news"
+    llm_model: str | None = None
 
 
 class FundamentalBrief(BaseModel):

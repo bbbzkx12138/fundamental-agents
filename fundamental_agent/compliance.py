@@ -95,6 +95,19 @@ def evaluate_compliance(
                     violations.append(
                         f"{summary.ticker}: 新闻摘要引用未知事件 {event_id}"
                     )
+        for explanation in brief.news.explanations:
+            for insight in explanation.insights:
+                for event_id in insight.event_ids:
+                    if event_id not in known_event_ids:
+                        violations.append(
+                            f"{explanation.ticker}: 新闻解释引用未知事件 {event_id}"
+                        )
+            if explanation.insights and explanation.ticker not in {
+                event.ticker for event in brief.news.events
+            }:
+                violations.append(
+                    f"{explanation.ticker}: 新闻解释没有对应事件"
+                )
 
     if brief.summary_source == "template":
         warnings.append("当前摘要来自确定性模板，不是模型生成")

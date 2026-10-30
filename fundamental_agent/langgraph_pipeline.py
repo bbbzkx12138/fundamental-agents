@@ -18,7 +18,9 @@ from .llm_provider import get_summary_provider
 from .llm_summary import summarize_brief
 from .models import CacheFile, CompanyRecords, FundamentalBrief
 from .news_agent import build_news_brief
+from .news_llm import explain_news, news_budget_from_env
 from .news_loader import load_news_cache
+from .news_provider import get_news_provider
 from .observability import CostBudget, TraceRecorder
 from .pipeline import assemble_brief
 from .report import render_markdown
@@ -45,6 +47,7 @@ class PipelineState(TypedDict, total=False):
     budget_snapshot: dict[str, Any]
     compliance: dict[str, Any]
     news: dict[str, Any]
+    news_budget_snapshot: dict[str, Any]
     approved: bool
     approval_comment: str
 
@@ -66,12 +69,14 @@ def build_langgraph(
 
     graph = StateGraph(PipelineState)
     summary_provider = get_summary_provider(llm_mode)
+    news_provider = get_news_provider(llm_mode)
     trace = trace_recorder or TraceRecorder(
         run_id=run_id or f"fundamental-{uuid4().hex[:12]}",
         trace_dir=trace_dir or (PROJECT_ROOT / "data" / "traces"),
         enabled=trace_enabled,
     )
     budget = budget or CostBudget()
+    news_budget = news_budget_from_env()
     news_cache_path = news_cache_path or (
         PROJECT_ROOT / "data" / "cache" / "news_events.sec.json"
     )
@@ -166,6 +171,48 @@ def build_langgraph(
         return {
             "brief": brief.model_dump(mode="json"),
             "news": news_brief.model_dump(mode="json") if news_brief else {},
+            "verification_notes": notes,
+        }
+
+    def news_llm_node(state: PipelineState) -> dict[str, Any]:
+        log_progress("正在生成新闻事件解释...")
+        brief = FundamentalBrief.model_validate(state["brief"])
+        notes = list(state["verification_notes"])
+        if not state.get("news"):
+            notes.append("新闻解释已跳过：没有可用的新闻事件。")
+            return {
+                "brief": brief.model_dump(mode="json"),
+                "verification_notes": notes,
+                "news_budget_snapshot": news_budget.snapshot(),
+            }
+
+        news = brief.news
+        if news is None:
+            notes.append("新闻解释已跳过：NewsBrief 为空。")
+            return {
+                "brief": brief.model_dump(mode="json"),
+                "verification_notes": notes,
+                "news_budget_snapshot": news_budget.snapshot(),
+            }
+
+        news, explanation_notes, explanation_source, model, budget_snapshot = explain_news(
+            news,
+            news_provider,
+            budget=news_budget,
+            trace=trace,
+        )
+        notes.extend(explanation_notes)
+        brief = brief.model_copy(
+            update={
+                "news": news,
+                "verification_notes": notes,
+            }
+        )
+        log_progress(f"新闻解释完成，来源：{explanation_source}")
+        return {
+            "brief": brief.model_dump(mode="json"),
+            "news": news.model_dump(mode="json"),
+            "news_budget_snapshot": budget_snapshot,
             "verification_notes": notes,
         }
 
@@ -295,6 +342,7 @@ def build_langgraph(
     graph.add_node("compute_metrics", traced("compute_metrics", compute_metrics_node))
     graph.add_node("verify_metrics", traced("verify_metrics", verify_metrics_node))
     graph.add_node("news", traced("news", news_node))
+    graph.add_node("news_llm", traced("news_llm", news_llm_node))
     graph.add_node("llm_summary", traced("llm_summary", llm_summary_node))
     graph.add_node("compliance", traced("compliance", compliance_node))
     graph.add_node("render_report", traced("render_report", render_report_node))
@@ -307,7 +355,8 @@ def build_langgraph(
     graph.add_edge("supervisor", "compute_metrics")
     graph.add_edge("compute_metrics", "verify_metrics")
     graph.add_edge("verify_metrics", "news")
-    graph.add_edge("news", "llm_summary")
+    graph.add_edge("news", "news_llm")
+    graph.add_edge("news_llm", "llm_summary")
     graph.add_edge("llm_summary", "compliance")
     graph.add_conditional_edges(
         "compliance",

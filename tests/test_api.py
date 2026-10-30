@@ -66,6 +66,10 @@ class ApiTest(unittest.TestCase):
             self.assertIn("美股基本面简报", report_payload["markdown"])
             self.assertEqual(report_payload["summary_source"], "template")
             self.assertIn("tickers", report_payload["structured"])
+            self.assertEqual(
+                report_payload["structured"]["news"]["explanation_source"],
+                "deterministic_news",
+            )
 
             trace = client.get(f"/runs/{thread_id}/trace", headers=AUTH_HEADERS)
             self.assertEqual(trace.status_code, 200, trace.text)

@@ -31,9 +31,11 @@ class LangGraphPipelineTest(unittest.TestCase):
         self.assertTrue(first.get("__interrupt__"))
         self.assertTrue(first.get("markdown"))
         self.assertIn("摘要与解释", first["markdown"])
+        self.assertIn("事件解读", first["markdown"])
         self.assertIn("合规检查", first["markdown"])
         self.assertEqual(first["summary_source"], "template")
         self.assertTrue(first["compliance"]["passed"])
+        self.assertEqual(first["news"]["explanation_source"], "deterministic_news")
         self.assertIn("budget_snapshot", first)
         self.assertNotIn("人工审批已通过", first["markdown"])
 
