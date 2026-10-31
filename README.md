@@ -395,6 +395,51 @@ News Agent 已接入 LangGraph 和报告，包含：
 每条 insight 必须引用真实存在的 event_id。若 API 失败、返回非法 JSON、引用错误事件或超出
 `NEWS_LLM_TOKEN_BUDGET`，会自动回退到 `deterministic_news` 摘要。
 
+## Risk 数据层
+
+当前已准备 Risk Agent 的确定性数据基础：
+
+```text
+data/cache/prices_daily.json
+data/portfolio.example.json
+data/cache/risk_snapshot.json
+```
+
+刷新历史日线：
+
+```powershell
+.\.venv\Scripts\python.exe -m fundamental_agent.market_data_ingest `
+  --tickers AAPL MSFT NVDA `
+  --as-of 2026-10-30 `
+  --lookback-days 365 `
+  --out data/cache/prices_daily.json
+```
+
+计算风险快照：
+
+```powershell
+.\.venv\Scripts\python.exe -m fundamental_agent.risk_metrics `
+  --prices data/cache/prices_daily.json `
+  --portfolio data/portfolio.example.json `
+  --out data/cache/risk_snapshot.json
+```
+
+当前指标：
+
+- 年化波动率
+- 累计收益
+- 最大回撤
+- 历史 95% VaR
+- 组合集中度 HHI
+- 资产相关性矩阵
+
+当前 `portfolio.example.json` 是示例权重，不代表真实持仓。
+
+行情来源为 Nasdaq 公共历史行情接口，只用于演示和开发验证。
+生产环境必须使用获得授权的行情供应商，并确认实时或延迟数据的使用权限。
+
+Risk Agent 还没有接入报告生成，下一步才会把风险快照接入 LangGraph。
+
 ## 测试
 
 ```powershell

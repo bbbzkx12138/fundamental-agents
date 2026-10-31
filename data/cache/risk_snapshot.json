@@ -1,0 +1,54 @@
+{
+  "as_of": "2026-10-30",
+  "lookback_days": 364,
+  "observation_count": 251,
+  "portfolio_annualized_volatility": 0.199603,
+  "portfolio_cumulative_return": 0.154377,
+  "portfolio_max_drawdown": -0.193275,
+  "portfolio_historical_var_95": 0.020699,
+  "concentration_hhi": 0.345,
+  "correlations": {
+    "AAPL": {
+      "AAPL": 1.0,
+      "MSFT": 0.11112,
+      "NVDA": 0.054925
+    },
+    "MSFT": {
+      "AAPL": 0.11112,
+      "MSFT": 1.0,
+      "NVDA": 0.251392
+    },
+    "NVDA": {
+      "AAPL": 0.054925,
+      "MSFT": 0.251392,
+      "NVDA": 1.0
+    }
+  },
+  "positions": [
+    {
+      "ticker": "AAPL",
+      "weight": 0.4,
+      "annualized_volatility": 0.240511,
+      "cumulative_return": 0.285593,
+      "max_drawdown": -0.13823,
+      "historical_var_95": 0.021424
+    },
+    {
+      "ticker": "MSFT",
+      "weight": 0.35,
+      "annualized_volatility": 0.328017,
+      "cumulative_return": 0.008331,
+      "max_drawdown": -0.328914,
+      "historical_var_95": 0.028722
+    },
+    {
+      "ticker": "NVDA",
+      "weight": 0.25,
+      "annualized_volatility": 0.371232,
+      "cumulative_return": 0.053083,
+      "max_drawdown": -0.201614,
+      "historical_var_95": 0.039588
+    }
+  ],
+  "data_source": "Nasdaq public historical quote API (demo source)"
+}

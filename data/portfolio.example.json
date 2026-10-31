@@ -1,0 +1,18 @@
+{
+  "as_of": "2026-10-30",
+  "currency": "USD",
+  "positions": [
+    {
+      "ticker": "AAPL",
+      "weight": 0.4
+    },
+    {
+      "ticker": "MSFT",
+      "weight": 0.35
+    },
+    {
+      "ticker": "NVDA",
+      "weight": 0.25
+    }
+  ]
+}
